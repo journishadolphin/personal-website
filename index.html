@@ -3,173 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journisha Dolphin - Portfolio Website</title>
+    <title>Journisha Dolphin - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#journey">Tech Journey</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="logo">JD</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#journey">My Journey</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#hire">Hire Me</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-     <div class="hero">
-        <div class="light-rays-container">
-            <canvas id="lightRaysCanvas"></canvas>
-        </div>
-        <div class="hero-content">
-            <h1>Journisha Dolphin</h1>
-            <p>Business Operations Engineer | DevOps & Site Reliability | Full-Stack Developer</p>
-            <div class="hero-links">
-                <a href="#contact" class="btn">Get In Touch</a>
-                <a href="https://github.com/journishadolphin" target="_blank" class="btn btn-outline">View GitHub</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <p>I'm a Business Operations Engineer at Mastercard specializing in DevOps and Site Reliability Engineering. With a B.S. in Computer Science from CUNY Herbert H. Lehman College (Class of 2024), I'm passionate about building reliable, scalable systems and automating processes to drive efficiency.</p>
-            <p>My experience spans platform stability, observability tools, CI/CD pipeline integration, and full-stack development. I thrive in Agile environments and enjoy solving complex problems through data-driven approaches and innovative automation.</p>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Programming & Development</h3>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Swift</span>
-                <span class="skill-tag">React Native</span>
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">Bash</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">API Development</span>
-            </div>
-            <div class="skill-category">
-                <h3>DevOps & Monitoring</h3>
-                <span class="skill-tag">Dynatrace</span>
-                <span class="skill-tag">Splunk</span>
-                <span class="skill-tag">Pivotal Cloud Foundry</span>
-                <span class="skill-tag">Prometheus</span>
-                <span class="skill-tag">Jenkins</span>
-                <span class="skill-tag">Artifactory</span>
-                <span class="skill-tag">Digital.ai Release</span>
-                <span class="skill-tag">XebiaLabs</span>
-            </div>
-            <div class="skill-category">
-                <h3>Tools & Platforms</h3>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">JIRA</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Android Studio</span>
-                <span class="skill-tag">Bootstrap</span>
-                <span class="skill-tag">Slack</span>
-                <span class="skill-tag">BMC Helix Remedy</span>
-                <span class="skill-tag">Symantec</span>
+    <!-- Home Section -->
+    <section id="home" class="section home-section">
+        <div class="home-content">
+            <div class="home-text">
+                <span class="greeting">Hello, I'm</span>
+                <h1 class="name">Journisha Dolphin</h1>
+                <p class="tagline">Business Operations Engineer | DevOps & Site Reliability</p>
+                <p class="description">
+                    Specializing in building reliable, scalable systems and automating processes 
+                    to drive efficiency. With expertise spanning platform stability, observability tools, 
+                    CI/CD pipeline integration, and full-stack development.
+                </p>
+                <div class="home-stats">
+                    <div class="stat">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Efficiency Increase</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Users Supported</span>
+                    </div>
+                </div>
+                <div class="home-buttons">
+                    <a href="#journey" class="btn btn-primary">Explore My Journey</a>
+                    <a href="#hire" class="btn btn-secondary">Get In Touch</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Carousel Section -->
-<div class="carousel">
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Mastercard</div>
-			<div class="num">01</div>
-			<img src="https://media.istockphoto.com/id/949299844/it/foto/vista-prospettica-dellesterno-delledificio-contemporaneo.jpg?s=612x612&w=0&k=20&c=_DR1aRHuTEV3EYBJo1ZXq1pF4SgwB9EVWQLaBj4sC5g=" />
-		</div>
-	</div>
+    <!-- My Journey Section (Carousel) -->
+    <section id="journey" class="section journey-section">
+        <div class="section-header">
+            <h2>My Professional Journey</h2>
+            <p class="section-subtitle">Click any card to explore my experience in detail</p>
+        </div>
+        
+        <div class="carousel">
+            <div class="carousel-item">
+                <div class="carousel-box">
+                    <div class="title">Mastercard</div>
+                    <div class="num">01</div>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" alt="Mastercard" />
+                </div>
+            </div>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Warsaw</div>
-			<div class="num">02</div>
-			<img src="https://media.istockphoto.com/id/1150545984/it/foto/palazzo-moderno-di-lusso-con-piscina.jpg?s=612x612&w=0&k=20&c=Pbrai_VGc9tUviMCF1UaBErdS1YGyIVWsD29jzMZwTY=" />
-		</div>
-	</div>
+            <div class="carousel-item">
+                <div class="carousel-box">
+                    <div class="title">Hospital for Special Surgery</div>
+                    <div class="num">02</div>
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" alt="Hospital" />
+                </div>
+            </div>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Madrid</div>
-			<div class="num">03</div>
-			<img
-				src="https://media.istockphoto.com/id/1214351345/it/foto/guardando-direttamente-lo-skyline-del-quartiere-finanziario-nel-centro-di-londra-immagine-di.jpg?s=612x612&w=0&k=20&c=oNNbPzPvcQ-4RA6AeatNIxHQIafBiXmDRtUUY0Ska-I="
-			/>
-		</div>
-	</div>
+            <div class="carousel-item">
+                <div class="carousel-box">
+                    <div class="title">America On Tech, Inc.</div>
+                    <div class="num">03</div>
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="America On Tech" />
+                </div>
+            </div>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Sydney</div>
-			<div class="num">04</div>
-			<img src="https://media.istockphoto.com/id/904390980/it/foto/foto-di-architettura-contemporanea-astratta.jpg?s=612x612&w=0&k=20&c=_P4Wmx5nq5MeDuimpNklKCBlrLovmCyd9lfiMKeJZDs=" />
-		</div>
-	</div>
+            <div class="carousel-item">
+                <div class="carousel-box">
+                    <div class="title">PureWow</div>
+                    <div class="num">04</div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="PureWow" />
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Istanbul</div>
-			<div class="num">05</div>
-			<img src="https://media.istockphoto.com/id/130408311/it/foto/piscina-allesterno-della-casa-moderna-al-crepuscolo.jpg?s=612x612&w=0&k=20&c=ZoVjx7uDjoHKmpM1ayW6UR1SQOoYh_xx-QMG_qeOYs0=" />
-		</div>
-	</div>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <p class="section-subtitle">A showcase of my technical achievements</p>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-number">01</div>
+                <h3>PCF Applications Dashboard</h3>
+                <p>Developed a comprehensive monitoring dashboard leveraging observability tools to provide real-time insights into application performance and system relationships.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Dynatrace</span>
+                    <span class="tech-badge">Splunk</span>
+                    <span class="tech-badge">PCF</span>
+                </div>
+                <div class="project-impact">
+                    <span class="impact-label">Impact:</span>
+                    <span class="impact-value">Improved system visibility across 100+ applications</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-number">02</div>
+                <h3>CI/CD Pipeline Automation</h3>
+                <p>Implemented automated deployment processes that significantly reduced manual effort and deployment time while maintaining high reliability standards.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Digital.ai Release</span>
+                    <span class="tech-badge">Jenkins</span>
+                    <span class="tech-badge">Artifactory</span>
+                </div>
+                <div class="project-impact">
+                    <span class="impact-label">Impact:</span>
+                    <span class="impact-value">40% reduction in manual effort, 20% faster deployments</span>
+                </div>
+            </div>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Prague</div>
-			<div class="num">06</div>
-			<img src="https://media.istockphoto.com/id/1299954175/it/foto/villa-cubica-moderna.jpg?s=612x612&w=0&k=20&c=DhGhb3c1E3DW_fbrWJ_R_Zh0Lbwu6syFeRLsKlZ9no8=" />
-		</div>
-	</div>
+            <div class="project-card">
+                <div class="project-number">03</div>
+                <h3>Mobile App Development</h3>
+                <p>Created an intuitive mobile application using React Native, focusing on seamless user experience and platform integration.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">React Native</span>
+                    <span class="tech-badge">Android Studio</span>
+                    <span class="tech-badge">Git</span>
+                </div>
+                <div class="project-impact">
+                    <span class="impact-label">Impact:</span>
+                    <span class="impact-value">Extended platform reach to mobile users</span>
+                </div>
+            </div>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Munich</div>
-			<div class="num">07</div>
-			<img src="https://media.istockphoto.com/id/926689776/it/foto/vista-ad-angolo-basso-dei-grattacieli-di-new-york.jpg?s=612x612&w=0&k=20&c=DmEB0Ty7ZwDnBoU5SuA8FNevOp4G1UcECw5aS4vA9A8=" />
-		</div>
-	</div>
+            <div class="project-card">
+                <div class="project-number">04</div>
+                <h3>Security Analysis System</h3>
+                <p>Conducted comprehensive data analysis and automated security processes for over 1000 employees across 75 departments.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">EPIC</span>
+                    <span class="tech-badge">FastSOAR</span>
+                </div>
+                <div class="project-impact">
+                    <span class="impact-label">Impact:</span>
+                    <span class="impact-value">Mitigated 45+ security vulnerabilities</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Venice</div>
-			<div class="num">08</div>
-			<img src="https://media.istockphoto.com/id/1191376167/it/foto/villa-dellisola.jpg?s=612x612&w=0&k=20&c=PKslWo4FdbjinohKQlK_oWL34jqAsnzMTdy2bxEAf-I=" />
-		</div>
-	</div>
+    <!-- Hire Me Section -->
+    <section id="hire" class="section hire-section">
+        <div class="hire-content">
+            <h2>Let's Work Together</h2>
+            <p class="hire-description">
+                I'm always interested in hearing about new opportunities, challenging projects, 
+                and innovative collaborations. Whether you're looking for DevOps expertise, 
+                SRE consultation, or full-stack development, I'd love to hear from you.
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <span class="contact-label">Email</span>
+                        <a href="mailto:journisha77@gmail.com">journisha77@gmail.com</a>
+                        <a href="mailto:journisha.dolphin@mastercard.com">journisha.dolphin@mastercard.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <span class="contact-label">Phone</span>
+                        <a href="tel:+16466590999">(646) 659-0999</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <div class="contact-details">
+                        <span class="contact-label">Connect</span>
+                        <a href="https://linkedin.com/in/journisha-dolphin-3b1b40156/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/journishadolphin" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
 
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">Oslo</div>
-			<div class="num">09</div>
-			<img src="https://media.istockphoto.com/id/184316397/it/foto/londra-edifici-aziendali.jpg?s=612x612&w=0&k=20&c=XqrRxEPzFnwRFk7PQrCiu9-FPfCTPyMe5BKKaxYXCs8=" />
-		</div>
-	</div>
-	<div class="carousel-item">
-		<div class="carousel-box">
-			<div class="title">London</div>
-			<div class="num">10</div>
-			<img src="https://media.istockphoto.com/id/184619832/it/foto/distretto-finanziario-al-crepuscolo-londra.jpg?s=612x612&w=0&k=20&c=RAThrJOBY6vhlT6-kQpu9-9jLEzWToYfdw46S8B0Mu0=" />
-		</div>
-	</div>
-</div>
-
-
+            <div class="skills-highlight">
+                <h3>Core Expertise</h3>
+                <div class="skills-list">
+                    <span class="skill-item">DevOps</span>
+                    <span class="skill-item">Site Reliability Engineering</span>
+                    <span class="skill-item">CI/CD Pipelines</span>
+                    <span class="skill-item">Cloud Infrastructure</span>
+                    <span class="skill-item">Observability & Monitoring</span>
+                    <span class="skill-item">Full-Stack Development</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">JavaScript</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Modal -->
     <div class="modal" id="modal">
@@ -179,94 +229,9 @@
         </div>
     </div>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Notable Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>PCF Applications Dashboard</h3>
-                <p>Developed a comprehensive dashboard that monitors the health of applications and lists its upstream and downstream dependencies. This tool provides real-time insights into application performance and system relationships.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">Dynatrace</span>
-                    <span class="tech-badge">Splunk</span>
-                    <span class="tech-badge">PCF</span>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <h3>CI/CD Pipeline Automation</h3>
-                <p>Implemented automated deployment processes using Digital.ai Release, significantly reducing manual effort by 40% and deployment time by 20%, while maintaining high reliability standards.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">Digital.ai Release</span>
-                    <span class="tech-badge">Jenkins</span>
-                    <span class="tech-badge">Artifactory</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>Mobile App Development</h3>
-                <p>Created a mobile application for One37pm using React Native, focusing on intuitive UI/UX design and seamless integration with existing platforms.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">React Native</span>
-                    <span class="tech-badge">Android Studio</span>
-                    <span class="tech-badge">Git</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Journey Gallery -->
-    <section id="journey">
-        <h2>My Tech Journey</h2>
-        <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">From mentoring students to building enterprise systems - here's my journey in technology.</p>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📸</div>
-                <div class="gallery-caption">Teaching at America On Tech</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📸</div>
-                <div class="gallery-caption">Internship at PureWow</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📸</div>
-                <div class="gallery-caption">Graduation Day - CUNY Lehman</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📸</div>
-                <div class="gallery-caption">First Day at Mastercard</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📸</div>
-                <div class="gallery-caption">Tech Conference</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">📸</div>
-                <div class="gallery-caption">Team Collaboration</div>
-            </div>
-        </div>
-        <p style="text-align: center; margin-top: 2rem; color: #666;">Replace the placeholder images above with your own photos by updating the gallery section.</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-content">
-            <p style="font-size: 1.2rem; margin-bottom: 1rem;">I'm always open to discussing new opportunities, collaborations, or just connecting with fellow tech enthusiasts!</p>
-            <div class="contact-links">
-                <a href="mailto:journisha77@gmail.com">📧 journisha77@gmail.com</a>
-                <a href="mailto:journisha.dolphin@mastercard.com">📧 journisha.dolphin@mastercard.com</a>
-                <a href="tel:+16466590999">📱 (646) 659-0999</a>
-                <a href="https://linkedin.com/in/journisha-dolphin-3b1b40156/" target="_blank">💼 LinkedIn</a>
-                <a href="https://github.com/journishadolphin" target="_blank">💻 GitHub</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Journisha Dolphin. All rights reserved.</p>
-        <p>Built with passion for technology and innovation</p>
+        <p>&copy; 2024 Journisha Dolphin. Crafted with precision and passion.</p>
     </footer>
 
     <script src="script.js"></script>
