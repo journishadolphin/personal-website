@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journisha Dolphin - Hire Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            color: #ccc;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+        }
+
+        nav a {
+            position: relative;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #aaa;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3) 0%, rgba(255, 138, 128, 0.2) 100%);
+        }
+
+        nav a.active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 8rem;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .hire-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Title */
+        .hire-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .hire-subtitle {
+            font-size: 1.3rem;
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+        }
+
+        /* Intro Section */
+        .hire-intro {
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .hire-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services Grid */
+        .services-section {
+            margin-bottom: 6rem;
+        }
+
+        .services-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 138, 128, 0.1) 100%);
+            border-color: rgba(255, 107, 107, 0.6);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.2);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Highlights */
+        .highlights-section {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 25px;
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .highlights-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+
+        .highlights-list {
+            list-style: none;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #bbb;
+        }
+
+        .highlights-list li::before {
+            content: '✓';
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        /* Stats */
+        .stats-section {
+            margin: 6rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #aaa;
+            letter-spacing: 1px;
+        }
+
+        /* Companies */
+        .companies-section {
+            margin: 6rem 0;
+        }
+
+        .companies-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .companies-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .company-item {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.08) 0%, rgba(255, 138, 128, 0.04) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.25);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .company-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 107, 0.5);
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.12) 0%, rgba(255, 138, 128, 0.08) 100%);
+        }
+
+        .company-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 0.8rem;
+        }
+
+        .company-role {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 25px;
+            padding: 4rem;
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            transition: width 0.3s;
+        }
+
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        .contact-info {
+            color: #aaa;
+            font-size: 1rem;
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hire-title {
+                font-size: 3rem;
+            }
+
+            .services-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlights-section,
+            .contact-section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .hire-container {
+                padding: 2rem 1rem;
+            }
+
+            nav {
+                top: 1rem;
+            }
+
+            main {
+                padding-top: 6rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#aboutme" class="nav-link">About Me</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="#hire" class="nav-link active">Hire Me</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="hire-container">
+            <h1 class="hire-title">Hire Me</h1>
+            <p class="hire-subtitle">Let's Build Resilient Systems Together</p>
+
+            <!-- Intro -->
+            <div class="hire-intro">
+                <p>I am a Business Operations Engineer specializing in Site Reliability Engineering with a strong focus on observability, automation, and system resilience. My work bridges software development and operations to ensure high availability, performance, and scalability in production environments.</p>
+                <p>I design and maintain data-driven monitoring systems, streamline deployment workflows, and automate processes to reduce manual intervention and maximize system reliability.</p>
+            </div>
+
+            <!-- Services -->
+            <section class="services-section">
+                <h2 class="services-title">What I Can Do For You</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>CI/CD Pipelines</h3>
+                        <p>Engineer and maintain resilient CI/CD pipelines that enhance deployment speed and stability across multiple environments.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Observability</h3>
+                        <p>Develop and optimize observability frameworks for real-time visibility into system health and performance metrics.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Incident Response</h3>
+                        <p>Implement incident response protocols and drive post-incident analysis to prevent recurrences and improve resilience.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Performance Tuning</h3>
+                        <p>Conduct data-driven performance optimization using metrics and logs for effective root cause detection.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Team Collaboration</h3>
+                        <p>Collaborate across engineering, operations, and security teams to embed reliability culture throughout the organization.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Automation & Security</h3>
+                        <p>Champion automation, scalability, and security-first engineering practices for modern infrastructure.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Highlights -->
+            <section class="highlights-section">
+                <h2 class="highlights-title">Notable Achievements</h2>
+                <ul class="highlights-list">
+                    <li>Built and maintained advanced monitoring dashboards using Splunk, Dynatrace, and Pivotal Cloud Foundry (PCF), ensuring optimal application health and proactive issue detection.</li>
+                    <li>Automated deployment workflows with Digital.ai Release, achieving a 40% reduction in manual effort and a 20% improvement in deployment time across multiple environments.</li>
+                    <li>Audited over 1,000+ user accounts and mitigated 45+ software vulnerabilities, strengthening platform security and compliance posture.</li>
+                </ul>
+            </section>
+
+            <!-- Stats -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Efficiency Increase</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Users Supported</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Companies -->
+            <section class="companies-section">
+                <h2 class="companies-title">Organizations I've Worked With</h2>
+                <ul class="companies-list">
+                    <li class="company-item">
+                        <div class="company-name">Mastercard</div>
+                        <div class="company-role">Business Operations Engineer<br>DevOps & Site Reliability</div>
+                    </li>
+                    <li class="company-item">
+                        <div class="company-name">Hospital for Special Surgery</div>
+                        <div class="company-role">Data Analyst<br>Cyber Security Intern</div>
+                    </li>
+                    <li class="company-item">
+                        <div class="company-name">America On Tech, Inc.</div>
+                        <div class="company-role">Assistant STEM Teacher<br>Peer Mentor</div>
+                    </li>
+                    <li class="company-item">
+                        <div class="company-name">PureWow</div>
+                        <div class="company-role">Mobile App Developer<br>Intern</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Contact -->
+            <section class="contact-section">
+                <h2 class="contact-title">Let's Connect</h2>
+                <div class="contact-info">
+                    <p><strong>Connect on:</strong> <a href="https://linkedin.com/in/journisha-dolphin-3b1b40156/" target="_blank" style="color: #ff6b6b;">LinkedIn</a> | <a href="https://github.com/journishadolphin" target="_blank" style="color: #ff6b6b;">GitHub</a></p>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

@@ -3,237 +3,992 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journisha Dolphin - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Journisha Dolphin - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            background-color: black;
+            font-size: 62.5%;
+        }
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+        }
+
+        nav a {
+            position: relative;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #aaa;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3) 0%, rgba(255, 138, 128, 0.2) 100%);
+        }
+
+        nav a.active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            opacity: 0;
+            animation: dotPulse 0.6s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes dotPulse {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) translateY(-12px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .marquee-header {
+            text-align: center;
+            z-index: 10;
+            padding: 3rem 2rem 0;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .marquee-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .marquee-header p {
+            font-size: 1.3rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .loop-images {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100svh;
+            width: 100%;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-loop-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .logo-loop-wrapper {
+            display: flex;
+            gap: 4rem;
+            animation: scrollLoopInfinite 30s linear infinite;
+            will-change: transform;
+        }
+
+        .logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-shrink: 0;
+            min-width: fit-content;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #333 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+
+        .logo-image {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            flex-shrink: 0;
+        }
+
+        .logo-image img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        .logo-separator {
+            font-size: 2rem;
+            color: #ff6b6b;
+            opacity: 0.3;
+            flex-shrink: 0;
+        }
+
+        @keyframes scrollLoopInfinite {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: black;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            background-color: var(--bg);
+            overflow: hidden;
+        }
+
+        section.hero-section {
+            height: 100svh;
+        }
+
+        section.section2 {
+            height: min-content;
+        }
+
+        .image-motion {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-position: center;
+            transform: rotatex(90deg);
+            transform-origin: 50% 0;
+        }
+
+        .image-motion picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-motion img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: white;
+        }
+
+        /* Section 3 Styles */
+        .section3 {
+            --bg: black;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            padding: 4rem 2rem 6rem;
+            min-height: auto;
+            background: var(--bg);
+            overflow: visible;
+        }
+
+        .section3-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .section3-header h1 {
+            font-size: 5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 25%, #ffab40 50%, #ff7043 75%, #ff5722 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .section3-header p {
+            font-size: 1.3rem;
+            color: #aaa;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Slider Styles */
+        :root {
+            --gap: 1.25rem;
+            --speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --closed: 5rem;
+            --open: 30rem;
+            --accent: #ff6b6b;
+        }
+
+        .head {
+            max-width: 1400px;
+            margin: auto;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .head h2 {
+            font: 400 1.5rem/1.2 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 107, 107, 0.3);
+            color: #fff;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+
+        .slider {
+            max-width: 1400px;
+            margin: auto;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .track {
+            display: flex;
+            gap: var(--gap);
+            align-items: flex-start;
+            justify-content: center;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 40px;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-card {
+            position: relative;
+            flex: 0 0 var(--closed);
+            height: 26rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: flex-basis var(--speed), transform var(--speed);
+            scroll-snap-align: center;
+        }
+
+        .project-card[active] {
+            flex-basis: var(--open);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
+        }
+
+        .project-card__bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75) saturate(75%);
+            transition: filter 0.3s, transform var(--speed);
+        }
+
+        .project-card:hover .project-card__bg {
+            filter: brightness(0.9) saturate(100%);
+            transform: scale(1.06);
+        }
+
+        .project-card__content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0;
+            background: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+            z-index: 2;
+        }
+
+        .project-card__title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.35rem;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .project-card__thumb,
+        .project-card__desc,
+        .project-card__btn {
+            display: none;
+        }
+
+        .project-card[active] .project-card__content {
+            flex-direction: row;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            gap: 1.1rem;
+        }
+
+        .project-card[active] .project-card__title {
+            writing-mode: horizontal-tb;
+            transform: none;
+            font-size: 2.4rem;
+        }
+
+        .project-card[active] .project-card__thumb,
+        .project-card[active] .project-card__desc,
+        .project-card[active] .project-card__btn {
+            display: block;
+        }
+
+        .project-card__thumb {
+            width: 133px;
+            height: 269px;
+            border-radius: 0.45rem;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card__desc {
+            color: #ddd;
+            font-size: 1rem;
+            line-height: 1.4;
+            max-width: 16rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .project-card__btn {
+            padding: 0.55rem 1.3rem;
+            border: none;
+            border-radius: 9999px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .project-card__btn:hover {
+            background: #ff824f;
+        }
+
+        .dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .feature {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 25px;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .feature:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 138, 128, 0.1) 100%);
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        .feature h3 {
+            font-size: 1.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .marquee-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .logo-loop-container {
+                height: 150px;
+                margin: 2rem 0;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .logo-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            .section3-header h1 {
+                font-size: 3.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            :root {
+                --closed: 4rem;
+                --open: 22rem;
+            }
+
+            .head {
+                padding: 30px 15px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .track {
+                flex-direction: column;
+                scroll-snap-type: y mandatory;
+                gap: 0.8rem;
+                padding-bottom: 20px;
+            }
+
+            .project-card {
+                height: auto;
+                min-height: 80px;
+                flex: 0 0 auto;
+                width: 100%;
+                scroll-snap-align: start;
+            }
+
+            .project-card[active] {
+                min-height: 300px;
+                transform: none;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .project-card__content {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 1rem;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .project-card__title {
+                writing-mode: horizontal-tb;
+                transform: none;
+                font-size: 1.2rem;
+            }
+
+            .project-card[active] .project-card__content {
+                align-items: flex-start;
+                padding: 1.5rem;
+            }
+
+            .project-card[active] .project-card__title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-card[active] .project-card__thumb {
+                width: 200px;
+                height: 267px;
+                border-radius: 0.35rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-card[active] .project-card__desc {
+                font-size: 0.95rem;
+                max-width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .project-card[active] .project-card__btn {
+                align-self: center;
+                width: 100%;
+                text-align: center;
+                padding: 0.7rem;
+            }
+
+            .dots {
+                display: none;
+            }
+
+            .controls {
+                width: 100%;
+                justify-content: space-between;
+                padding: 0;
+            }
+            .present-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: 70% center; /* shift right */
+            }
+
+        }  
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">JD</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#journey">My Journey</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#hire">Hire Me</a></li>
-            </ul>
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#aboutme" class="nav-link">About Me</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="hire.html" class="nav-link">Hire Me</a>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="section home-section">
-        <div class="home-content">
-            <div class="home-text">
-                <span class="greeting">Hello, I'm</span>
-                <h1 class="name">Journisha Dolphin</h1>
-                <p class="tagline">Business Operations Engineer | DevOps & Site Reliability</p>
-                <p class="description">
-                    Specializing in building reliable, scalable systems and automating processes 
-                    to drive efficiency. With expertise spanning platform stability, observability tools, 
-                    CI/CD pipeline integration, and full-stack development.
-                </p>
-                <div class="home-stats">
-                    <div class="stat">
-                        <span class="stat-number">4</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">40%</span>
-                        <span class="stat-label">Efficiency Increase</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">Users Supported</span>
+    <!-- Hero Section -->
+    <section class="loop-images hero-section" id="home" style="--bg: white;">
+        <div class="marquee-header">
+            <h1>Journisha Dolphin</h1>
+            <p>DevOps + Site Reliability Engineering</p>
+        </div>
+                    
+        <div class="logo-loop-container">
+            <div class="logo-loop-wrapper">
+                <div class="logo-item">
+                    <span class="logo-text">Docker</span>
+                    <div class="logo-image">
+                        <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" alt="Docker">
                     </div>
                 </div>
-                <div class="home-buttons">
-                    <a href="#journey" class="btn btn-primary">Explore My Journey</a>
-                    <a href="#hire" class="btn btn-secondary">Get In Touch</a>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Amazon Web Services</span>
+                    <div class="logo-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png" alt="AWS">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Prometheus</span>
+                    <div class="logo-image">
+                        <img src="https://images.icon-icons.com/2107/PNG/512/file_type_prometheus_icon_130229.png" alt="Prometheus">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Python</span>
+                    <div class="logo-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png" alt="Python">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">SQL</span>
+                    <div class="logo-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Linux</span>
+                    <div class="logo-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1012px-Tux.svg.png" alt="Linux">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Dynatrace</span>
+                    <div class="logo-image">
+                        <img src="https://companieslogo.com/img/orig/DT-89e31c0c.png?t=1720244491" alt="Dynatrace">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">PCF</span>
+                    <div class="logo-image">
+                        <img src="https://avatars.githubusercontent.com/u/5497370?s=200&v=4" alt="PCF">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Splunk</span>
+                    <div class="logo-image">
+                        <img src="https://logos-world.net/wp-content/uploads/2022/11/Splunk-Emblem.png" alt="Splunk">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Jira</span>
+                    <div class="logo-image">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Jenkins</span>
+                    <div class="logo-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1483px-Jenkins_logo.svg.png" alt="Jenkins">
+                    </div>
+                </div>
+                <div class="logo-separator"></div>
+                <div class="logo-item">
+                    <span class="logo-text">Docker</span>
+                    <div class="logo-image">
+                        <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" alt="Docker">
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Image Section -->
+    <section class="section2" style="--bg: black;">
+        <div class="image-motion">
+            <picture>
+                <img src="https://i.postimg.cc/1ztkf4hX/moveimage.png" alt="transition">
+            </picture>
         </div>
     </section>
 
-    <!-- My Journey Section (Carousel) -->
-    <section id="journey" class="section journey-section">
-        <div class="section-header">
-            <h2>My Professional Journey</h2>
-            <p class="section-subtitle">Click any card to explore my experience in detail</p>
+    <!-- About Me / Welcome Section -->
+    <section style="--bg: black;" class="section3" id="aboutme">
+        <div class="section3-header">
+            <h1>About Me</h1>
+            <p>Explore My Journey & Expertise</p>
         </div>
-        
-        <div class="carousel">
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Mastercard</div>
-                    <div class="num">01</div>
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" alt="Mastercard" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Hospital for Special Surgery</div>
-                    <div class="num">02</div>
-                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" alt="Hospital" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">America On Tech, Inc.</div>
-                    <div class="num">03</div>
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800" alt="America On Tech" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">PureWow</div>
-                    <div class="num">04</div>
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="PureWow" />
-                </div>
-            </div>
+        <iframe width="696" height="394" src="https://www.youtube.com/embed/PNtVywz04JA" title="2024 Innovators and Disruptors Award Powered by America On Tech // 10 Year Anniversary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div class="head">
+        <div class="section3-header">
+            <h2>Explore My Timeline</h2>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
-        <div class="section-header">
-            <h2>Featured Projects</h2>
-            <p class="section-subtitle">A showcase of my technical achievements</p>
+        <div class="controls">
+                <button id="prev" class="nav-btn" aria-label="Prev">‹</button>
+                <button id="next" class="nav-btn" aria-label="Next">›</button>
         </div>
-        
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-number">01</div>
-                <h3>PCF Applications Dashboard</h3>
-                <p>Developed a comprehensive monitoring dashboard leveraging observability tools to provide real-time insights into application performance and system relationships.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">Dynatrace</span>
-                    <span class="tech-badge">Splunk</span>
-                    <span class="tech-badge">PCF</span>
-                </div>
-                <div class="project-impact">
-                    <span class="impact-label">Impact:</span>
-                    <span class="impact-value">Improved system visibility across 100+ applications</span>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-number">02</div>
-                <h3>CI/CD Pipeline Automation</h3>
-                <p>Implemented automated deployment processes that significantly reduced manual effort and deployment time while maintaining high reliability standards.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">Digital.ai Release</span>
-                    <span class="tech-badge">Jenkins</span>
-                    <span class="tech-badge">Artifactory</span>
-                </div>
-                <div class="project-impact">
-                    <span class="impact-label">Impact:</span>
-                    <span class="impact-value">40% reduction in manual effort, 20% faster deployments</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-number">03</div>
-                <h3>Mobile App Development</h3>
-                <p>Created an intuitive mobile application using React Native, focusing on seamless user experience and platform integration.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">React Native</span>
-                    <span class="tech-badge">Android Studio</span>
-                    <span class="tech-badge">Git</span>
-                </div>
-                <div class="project-impact">
-                    <span class="impact-label">Impact:</span>
-                    <span class="impact-value">Extended platform reach to mobile users</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-number">04</div>
-                <h3>Security Analysis System</h3>
-                <p>Conducted comprehensive data analysis and automated security processes for over 1000 employees across 75 departments.</p>
-                <div class="project-tech">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">EPIC</span>
-                    <span class="tech-badge">FastSOAR</span>
-                </div>
-                <div class="project-impact">
-                    <span class="impact-label">Impact:</span>
-                    <span class="impact-value">Mitigated 45+ security vulnerabilities</span>
-                </div>
-            </div>
         </div>
-    </section>
 
-    <!-- Hire Me Section -->
-    <section id="hire" class="section hire-section">
-        <div class="hire-content">
-            <h2>Let's Work Together</h2>
-            <p class="hire-description">
-                I'm always interested in hearing about new opportunities, challenging projects, 
-                and innovative collaborations. Whether you're looking for DevOps expertise, 
-                SRE consultation, or full-stack development, I'd love to hear from you.
-            </p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">✉️</div>
-                    <div class="contact-details">
-                        <span class="contact-label">Email</span>
-                        <a href="mailto:journisha77@gmail.com">journisha77@gmail.com</a>
-                        <a href="mailto:journisha.dolphin@mastercard.com">journisha.dolphin@mastercard.com</a>
+        <div class="slider">
+            <div class="track" id="track">
+                <article class="project-card" active>
+                    <img class="project-card__bg" src="assets/hackathon img.PNG" alt="">
+                    <div class="project-card__content">
+                        <img class="project-card__thumb" src="assets/hackathon img.PNG" alt="">
+                        <div>
+                            <h3 class="project-card__title">Origins</h3>
+                            <p class="project-card__desc">My curiosity began with video games—how they worked, broke, and came to life. Raised by immigrant parents with limited guidance, I found my footing through hands-on creation, hackathons, and internships at the Urban Assembly Gateway School of Technology</p>
+                            
+                        </div>
                     </div>
-                </div>
+                </article>
+
+                <article class="project-card">
+                    <img class="project-card__bg" src="assets/collegepic.JPG" alt="">
+                    <div class="project-card__content">
+                        <img class="project-card__thumb" src="assets/collegepic.JPG" alt="">
+                        <div>
+                            <h3 class="project-card__title">Foundation</h3>
+                            <p class="project-card__desc">I studied computer science, learning the fundamentals of systems, algorithms, and how computers truly operate beneath the surface. The rigor pushed me into increasingly challenging internships that tested my resilience and sharpened my technical confidence.</p>
+                           
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <img class="project-card__bg" src="assets/present.jpg" alt="" class="present-img">
+                    <div class="project-card__content">
+                        <img class="project-card__thumb" src="assets/present.jpg">
+                        <div>
+                            <h3 class="project-card__title">Momentum</h3>
+                            <p class="project-card__desc">Today, I drive impact within my organization while continuously expanding my skills in reliability, automation, and large-scale systems. Beyond work, I build personal projects and share my journey to inspire others navigating their own paths in tech.</p>
+                            
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <img class="project-card__bg" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=520&fit=crop" alt="">
+                    <div class="project-card__content">
+                        <img class="project-card__thumb" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&h=400&fit=crop" alt="">
+                        <div>
+                            <h3 class="project-card__title">Forward</h3>
+                            <p class="project-card__desc">Looking ahead, I aim to deepen my influence by designing data-driven, reliable solutions that scale and endure. My goal is to blend engineering excellence with thoughtful problem-solving to create meaningful, lasting impact.</p>
+                             <button class="project-card__btn">Hire Me</button>
+                        </div>
+                    </div>
+                </article>
+
                 
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-details">
-                        <span class="contact-label">Phone</span>
-                        <a href="tel:+16466590999">(646) 659-0999</a>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">🔗</div>
-                    <div class="contact-details">
-                        <span class="contact-label">Connect</span>
-                        <a href="https://linkedin.com/in/journisha-dolphin-3b1b40156/" target="_blank">LinkedIn</a>
-                        <a href="https://github.com/journishadolphin" target="_blank">GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skills-highlight">
-                <h3>Core Expertise</h3>
-                <div class="skills-list">
-                    <span class="skill-item">DevOps</span>
-                    <span class="skill-item">Site Reliability Engineering</span>
-                    <span class="skill-item">CI/CD Pipelines</span>
-                    <span class="skill-item">Cloud Infrastructure</span>
-                    <span class="skill-item">Observability & Monitoring</span>
-                    <span class="skill-item">Full-Stack Development</span>
-                    <span class="skill-item">Python</span>
-                    <span class="skill-item">Java</span>
-                    <span class="skill-item">JavaScript</span>
-                </div>
             </div>
         </div>
+
+        <div class="dots" id="dots"></div>
+
+     
+    <script>
+      (() => {
+        const track = document.getElementById("track");
+        const wrap = track.parentElement;
+        const cards = Array.from(track.children);
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+        const dotsBox = document.getElementById("dots");
+        const isMobile = () => matchMedia("(max-width:767px)").matches;
+
+        // Create dots
+        cards.forEach((_, i) => {
+          const dot = document.createElement("span");
+          dot.className = "dot";
+          dot.onclick = () => activate(i, true);
+          dotsBox.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsBox.children);
+        let current = 0;
+
+        function center(i) {
+          const card = cards[i];
+          const axis = isMobile() ? "top" : "left";
+          const size = isMobile() ? "clientHeight" : "clientWidth";
+          const start = isMobile() ? card.offsetTop : card.offsetLeft;
+          wrap.scrollTo({
+            [axis]: start - (wrap[size] / 2 - card[size] / 2),
+            behavior: "smooth"
+          });
+        }
+
+        function toggleUI(i) {
+          cards.forEach((c, k) => c.toggleAttribute("active", k === i));
+          dots.forEach((d, k) => d.classList.toggle("active", k === i));
+          prev.disabled = i === 0;
+          next.disabled = i === cards.length - 1;
+        }
+
+        function activate(i, scroll) {
+          if (i === current) return;
+          current = i;
+          toggleUI(i);
+          if (scroll) center(i);
+        }
+
+        function go(step) {
+          activate(Math.min(Math.max(current + step, 0), cards.length - 1), true);
+        }
+
+        prev.onclick = () => go(-1);
+        next.onclick = () => go(1);
+
+        // Keyboard navigation
+        addEventListener("keydown", (e) => {
+          if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
+          if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
+        }, { passive: true });
+
+        // Card interactions
+        cards.forEach((card, i) => {
+          card.addEventListener("mouseenter", () => 
+            matchMedia("(hover:hover)").matches && activate(i, true)
+          );
+          card.addEventListener("click", () => activate(i, true));
+        });
+
+        // Touch support
+        let sx = 0, sy = 0;
+        track.addEventListener("touchstart", (e) => {
+          sx = e.touches[0].clientX;
+          sy = e.touches[0].clientY;
+        }, { passive: true });
+
+        track.addEventListener("touchend", (e) => {
+          const dx = e.changedTouches[0].clientX - sx;
+          const dy = e.changedTouches[0].clientY - sy;
+          if (isMobile() ? Math.abs(dy) > 60 : Math.abs(dx) > 60)
+            go((isMobile() ? dy : dx) > 0 ? -1 : 1);
+        }, { passive: true });
+
+        // Initialize
+        if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
+        addEventListener("resize", () => center(current));
+        toggleUI(0);
+        center(0);
+      })();
+    </script>   
     </section>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <div id="modalBody"></div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Journisha Dolphin. Crafted with precision and passion.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>

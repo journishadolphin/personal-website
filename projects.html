@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journisha Dolphin - Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            color: #ccc;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+        }
+
+        nav a {
+            position: relative;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #aaa;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3) 0%, rgba(255, 138, 128, 0.2) 100%);
+        }
+
+        nav a.active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 8rem;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .projects-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        /* Under Construction Section */
+        .under-construction {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .construction-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        .projects-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .projects-subtitle {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .construction-message {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .construction-message p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Status Card */
+        .status-card {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .status-label {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-text {
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-link {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .cta-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            transition: width 0.3s;
+        }
+
+        .cta-link:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-title {
+                font-size: 3rem;
+            }
+
+            .construction-icon {
+                font-size: 3.5rem;
+            }
+
+            .projects-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .construction-message p {
+                font-size: 1rem;
+            }
+
+            .status-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .projects-container {
+                padding: 2rem 1rem;
+            }
+
+            nav {
+                top: 1rem;
+            }
+
+            main {
+                padding-top: 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+             <a href="#aboutme" class="nav-link">About Me</a>
+            <a href="#projects" class="nav-link active">Projects</a>
+            <a href="hire.html" class="nav-link">Hire Me</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="projects-container">
+            <div class="under-construction">
+                <div class="construction-icon">🔧</div>
+                <h1 class="projects-title">Projects</h1>
+                <p class="projects-subtitle">Under Construction</p>
+
+                <div class="construction-message">
+                    <p>I'm currently showcasing my work and project portfolio. This page is being built with the same care and attention I put into my engineering work.</p>
+                    <p>Check back soon to see detailed case studies, technical implementations, and the innovative solutions I've built.</p>
+                </div>
+
+                <div class="status-card">
+                    <div class="status-label">Current Status</div>
+                    <div class="status-text">Coming Soon 🚀</div>
+                </div>
+
+                <div class="cta-section">
+                    <h2 class="cta-title">Want to Learn More?</h2>
+                    <p class="cta-text">In the meantime, feel free to reach out and let's discuss how I can help with your engineering needs.</p>
+                    <div class="cta-links">
+                        <a href="hire.html" class="cta-link">View My Services</a>
+                        <a href="mailto:journisha77@gmail.com" class="cta-link">Get In Touch</a>
+                        <a href="https://github.com/journishadolphin" class="cta-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

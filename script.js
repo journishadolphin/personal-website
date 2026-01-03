@@ -1,222 +1,190 @@
-// Experience data
-const experiences = [
-    {
-        company: "Mastercard",
-        title: "Business Operations Engineer (DevOps + Site Reliability)",
-        date: "June 2023 - Present",
-        location: "New York, NY",
-        responsibilities: [
-            "Ensures platform stability and health by developing dashboards and leveraging observability tools such as Splunk, Dynatrace, and Pivotal Cloud Foundry (PCF)",
-            "Utilizes in-depth analysis across data sets to troubleshoot and prevent customer-facing disruptions by participating on on-call duties",
-            "Writes and executes advanced SQL queries to validate and troubleshoot database changes, ensuring code quality and efficiency in production environments",
-            "Automated processes with Digital.ai Release, cutting manual effort by 40% and reducing deployment time by 20%",
-            "Supports Agile workflows by integrating CI/CD pipelines, enabling fast, high-quality deployments with minimal downtime"
-        ]
-    },
-    {
-        company: "Hospital for Special Surgery",
-        title: "Data Analyst / Cyber Security Intern",
-        date: "January 2021 - January 2023",
-        location: "New York, NY",
-        responsibilities: [
-            "Completed a data analysis of 1000+ employees across 75 departments who have active user accounts in the electronic medical record system named EPIC",
-            "Spotted possible threats to security by identifying mismatched system privileges while also automating the onboarding process for future employees",
-            "Combatted over 45+ software security vulnerabilities using software such as FastSOAR, Prometheus, and Symantec"
-        ]
-    },
-    {
-        company: "America On Tech, Inc.",
-        title: "Assistant STEM Teacher / Peer Mentor",
-        date: "September 2019 - April 2020",
-        location: "New York, NY",
-        responsibilities: [
-            "Instructed 20+ students in the Tech Flex Leaders Program on HTML, CSS, and JavaScript topics",
-            "Aided, mentored and coached students in being proficient in web development and starting their careers in tech",
-            "Troubleshooted network and hardware problems for classroom devices and debugged students' code"
-        ]
-    },
-    {
-        company: "PureWow",
-        title: "Mobile App Developer Intern",
-        date: "July 2019 - August 2019",
-        location: "New York, NY",
-        responsibilities: [
-            "Developed wireframe mobile app, expanding user reach for One37pm",
-            "Proficient in React Native Framework and Android Studio for UI design and integration",
-            "Collaborated through Git and JIRA, meeting Agile project deadlines"
-        ]
-    }
-];
-
-/*-------------------- Vars --------------------*/
-let progress = 50;
-let startX = 0;
-let active = 0;
-let isDown = false;
-let hasViewedAll = false;
-let viewedCards = new Set([0]);
-
-/*-------------------- Constants --------------------*/
-const speedWheel = 0.02;
-const speedDrag = -0.1;
-
-/*-------------------- Modal Elements --------------------*/
-const modal = document.getElementById('modal');
-const modalBody = document.getElementById('modalBody');
-const closeModalBtn = document.getElementById('closeModal');
-
-/*-------------------- Get Z --------------------*/
-const getZindex = (array, index) => 
-    array.map((_, i) => (index === i) ? array.length : array.length - Math.abs(index - i));
-
-/*-------------------- Items --------------------*/
-const $items = document.querySelectorAll('.carousel-item');
-const $cursors = document.querySelectorAll('.cursor');
-
-const displayItems = (item, index, active) => {
-    const zIndex = getZindex([...$items], active)[index];
-    item.style.setProperty('--zIndex', zIndex);
-    item.style.setProperty('--active', (index - active) / $items.length);
-};
-
-/*-------------------- Animate --------------------*/
-const animate = () => {
-    progress = Math.max(0, Math.min(progress, 100));
-    active = Math.floor(progress / 100 * ($items.length - 1));
-    
-    // Track viewed cards
-    viewedCards.add(active);
-    
-    $items.forEach((item, index) => displayItems(item, index, active));
-};
-
-animate();
-
-/*-------------------- Modal Functions --------------------*/
-function openModal(index) {
-    // Make sure we have experience data for this index
-    if (index >= experiences.length) {
-        console.warn('No experience data for index:', index);
+// GSAP Animation Script - Run first
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if GSAP is loaded
+    if (typeof gsap === 'undefined') {
+        console.error('GSAP is not loaded. Please include GSAP CDN in your HTML');
         return;
     }
-    
-    const exp = experiences[index];
-    modalBody.innerHTML = `
-        <h3>${exp.company}</h3>
-        <div class="modal-role">${exp.title}</div>
-        <div class="modal-date">${exp.date} | ${exp.location}</div>
-        <h4 style="color: #667eea; margin-bottom: 1rem;">Key Responsibilities:</h4>
-        <ul>
-            ${exp.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
-        </ul>
-    `;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
 
-function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
-closeModalBtn.addEventListener('click', closeModal);
+    // ====== Image Flip Animation ======
+    const imageMotion = document.querySelector('.image-motion');
+    if (imageMotion) {
+        // Set initial state
+        gsap.set(imageMotion, {
+            rotateX: 90,
+        });
 
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModal();
-    }
-});
-
-// Escape key to close modal
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-    }
-});
-
-/*-------------------- Auto-scroll to next section --------------------*/
-function scrollToNextSection() {
-    const projectsSection = document.getElementById('projects');
-    if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-/*-------------------- Click on Items --------------------*/
-$items.forEach((item, i) => {
-    item.addEventListener('click', (e) => {
-        // Prevent opening modal if dragging
-        if (Math.abs(e.clientX - startX) > 10) return;
-        
-        // Open modal with the experience data
-        if (i < experiences.length) {
-            openModal(i);
-        }
-        
-        // Also update the carousel position
-        progress = (i / $items.length) * 100 + 10;
-        animate();
-    });
-});
-
-/*-------------------- Handlers --------------------*/
-const handleWheel = e => {
-    const wheelProgress = e.deltaY * speedWheel;
-    const newProgress = progress + wheelProgress;
-    
-    // Check if we're at the end and have viewed all cards
-    if (newProgress >= 100 && viewedCards.size === experiences.length && !hasViewedAll) {
-        hasViewedAll = true;
-        scrollToNextSection();
-        return;
-    }
-    
-    progress = newProgress;
-    animate();
-};
-
-const handleMouseMove = (e) => {
-    if (e.type === 'mousemove') {
-        $cursors.forEach(($cursor) => {
-            $cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        // Animate on scroll
+        gsap.to(imageMotion, {
+            rotateX: 0,
+            scrollTrigger: {
+                trigger: '.section2',
+                start: 'top bottom',
+                end: 'center center',
+                scrub: 1,
+                markers: false,
+            },
         });
     }
-    if (!isDown) return;
-    const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-    const mouseProgress = (x - startX) * speedDrag;
-    progress = progress + mouseProgress;
-    startX = x;
-    animate();
-};
 
-const handleMouseDown = e => {
-    isDown = true;
-    startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-};
+    // ====== Title Animation ======
+    const title = document.querySelector('.section3-header h1');
+    if (title) {
+        gsap.fromTo(title, 
+            {
+                opacity: 0,
+                y: 50,
+            }, 
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.section3',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse',
+                },
+            }
+        );
+    }
 
-const handleMouseUp = () => {
-    isDown = false;
-};
+    // ====== Subtitle Animation ======
+    const subtitle = document.querySelector('.section3-header p');
+    if (subtitle) {
+        gsap.fromTo(subtitle,
+            {
+                opacity: 0,
+                y: 30,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.3,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.section3',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse',
+                },
+            }
+        );
+    }
 
-/*-------------------- Listeners --------------------*/
-document.addEventListener('mousewheel', handleWheel);
-document.addEventListener('mousedown', handleMouseDown);
-document.addEventListener('mousemove', handleMouseMove);
-document.addEventListener('mouseup', handleMouseUp);
-document.addEventListener('touchstart', handleMouseDown);
-document.addEventListener('touchmove', handleMouseMove);
-document.addEventListener('touchend', handleMouseUp);
+    // ====== Feature Cards Animation ======
+    const featureCards = document.querySelectorAll('.feature');
+    if (featureCards.length > 0) {
+        gsap.fromTo(featureCards,
+            {
+                opacity: 0,
+                y: 50,
+                scale: 0.9,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.features',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse',
+                },
+            }
+        );
+    }
 
-/*-------------------- Smooth scroll for nav links --------------------*/
-document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
+    // ====== Refresh ScrollTrigger after all animations are set ======
+    
 });
+
+// CodePen Slider Script - Run after GSAP
+(() => {
+    const track = document.getElementById("track");
+    const wrap = track.parentElement;
+    const cards = Array.from(track.children);
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    const dotsBox = document.getElementById("dots");
+    const isMobile = () => matchMedia("(max-width:767px)").matches;
+    cards.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dot.onclick = () => activate(i, true);
+        dotsBox.appendChild(dot);
+    });
+    const dots = Array.from(dotsBox.children);
+    let current = 0;
+    function center(i) {
+        const card = cards[i];
+        const axis = isMobile() ? "top" : "left";
+        const size = isMobile() ? "clientHeight" : "clientWidth";
+        const start = isMobile() ? card.offsetTop : card.offsetLeft;
+        wrap.scrollTo({
+            [axis]: start - (wrap[size] / 2 - card[size] / 2),
+            behavior: "smooth"
+        });
+    }
+    function toggleUI(i) {
+        cards.forEach((c, k) => c.toggleAttribute("active", k === i));
+        dots.forEach((d, k) => d.classList.toggle("active", k === i));
+        prev.disabled = i === 0;
+        next.disabled = i === cards.length - 1;
+    }
+    function activate(i, scroll) {
+        if (i === current) return;
+        current = i;
+        toggleUI(i);
+        if (scroll) center(i);
+    }
+    function go(step) {
+        activate(Math.min(Math.max(current + step, 0), cards.length - 1), true);
+    }
+    prev.onclick = () => go(-1);
+    next.onclick = () => go(1);
+    addEventListener(
+        "keydown",
+        (e) => {
+            if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
+            if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
+        },
+        { passive: true }
+    );
+    cards.forEach((card, i) => {
+        card.addEventListener(
+            "mouseenter",
+            () => matchMedia("(hover:hover)").matches && activate(i, true)
+        );
+        card.addEventListener("click", () => activate(i, true));
+    });
+    let sx = 0,
+        sy = 0;
+    track.addEventListener(
+        "touchstart",
+        (e) => {
+            sx = e.touches[0].clientX;
+            sy = e.touches[0].clientY;
+        },
+        { passive: true }
+    );
+    track.addEventListener(
+        "touchend",
+        (e) => {
+            const dx = e.changedTouches[0].clientX - sx;
+            const dy = e.changedTouches[0].clientY - sy;
+            if (isMobile() ? Math.abs(dy) > 60 : Math.abs(dx) > 60)
+                go((isMobile() ? dy : dx) > 0 ? -1 : 1);
+        },
+        { passive: true }
+    );
+    if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
+    addEventListener("resize", () => center(current));
+    toggleUI(0);
+    center(0);
+})();

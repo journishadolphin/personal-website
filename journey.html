@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Journisha Dolphin · Story Terminal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- JetBrains Mono -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --coral-1: #ff6b6b;
+      --coral-2: #ff8a80;
+      --coral-3: #ffab40;
+      --coral-4: #ff7043;
+      --coral-5: #ff5722;
+      --bg-dark: #0d0d0d;
+      --terminal-bg: #111;
+      --text-primary: #ffffff;
+      --text-secondary: #ffbdbd;
+      --border-soft: rgba(255, 107, 107, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* we control scroll horizontally */
+      background: radial-gradient(circle at top, #1b1b1b, #050505 70%);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 62.5%;
+      color: var(--text-primary);
+    }
+
+    /* Horizontal strip of full-screen terminal "screens" */
+    #strip {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      flex: 0 0 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+
+      position: relative;
+    }
+
+    /* Big faint phase number in the corner */
+    .panel::before {
+      content: attr(data-step);
+      position: absolute;
+      font-size: clamp(6rem, 11vw, 8rem);
+      font-weight: 700;
+      top: 1.2rem;
+      left: 1.6rem;
+      color: rgba(0, 0, 0, 0.7);
+      -webkit-text-stroke: 1px rgba(255, 107, 107, 0.5);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Terminal window */
+    .terminal-box {
+      width: 95%;
+      max-width: 900px;
+      background: var(--terminal-bg);
+      border: 2px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 25px rgba(255, 107, 107, 0.25);
+    }
+
+    /* Terminal header with dots */
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red {
+      background: #ff5f56;
+    }
+
+    .dot-yellow {
+      background: #ffbd2e;
+    }
+
+    .dot-green {
+      background: #27c93f;
+    }
+
+    .terminal-title {
+      color: var(--coral-1);
+      font-weight: 600;
+      margin-left: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* Log lines / type lines */
+    .log-line,
+    .type-line {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      white-space: pre-wrap;
+      min-height: 1.4rem;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .log-line.system {
+      color: var(--text-secondary);
+    }
+
+    .log-line.command {
+      color: var(--coral-3);
+    }
+
+    .type-line {
+      position: relative;
+    }
+
+    /* Caret for active typing line */
+    .caret::after {
+      content: "▌";
+      margin-left: 4px;
+      animation: blink 0.7s infinite;
+      color: var(--coral-1);
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Hint line */
+    .hint {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    .hint span {
+      color: var(--coral-3);
+    }
+
+    @media (max-width: 768px) {
+      .panel {
+        padding: 2.5rem 1.4rem;
+      }
+
+      .terminal-box {
+        padding: 1.6rem;
+      }
+
+      .terminal-title {
+        font-size: 1.1rem;
+      }
+
+      .log-line,
+      .type-line {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="strip">
+    <!-- PANEL 1: Boot / Intro -->
+    <section class="panel" data-step="01">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-dot dot-red"></div>
+          <div class="terminal-dot dot-yellow"></div>
+          <div class="terminal-dot dot-green"></div>
+          <span class="terminal-title">journisha@localhost ~ ./journey.sh --phase origin</span>
+        </div>
+
+        <div class="log-line command" data-text="$ ./journey.sh --phase origin"></div>
+        <div class="log-line system" data-text="> Initializing narrative engine..."></div>
+        <div class="log-line system" data-text="> Loading grit, curiosity, and a stack of questions."></div>
+
+        <div class="type-line" data-text="By starting with pure curiosity, staring at video games and wondering how they actually worked."></div>
+        <div class="type-line" data-text="By growing up with immigrant parents and almost no tech roadmap—just stubbornness and Google."></div>
+        <div class="type-line" data-text="By building things with my hands, breaking them, and learning to fix them one experiment at a time."></div>
+
+        <p class="hint"><span>Scroll or swipe →</span> to fast-forward this log and move to the next phase.</p>
+      </div>
+    </section>
+
+    <!-- PANEL 2: Youth / High School -->
+    <section class="panel" data-step="02">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-dot dot-red"></div>
+          <div class="terminal-dot dot-yellow"></div>
+          <div class="terminal-dot dot-green"></div>
+          <span class="terminal-title">Phase 1 · Youth & High School</span>
+        </div>
+
+        <div class="log-line command" data-text="$ ./journey.sh --phase youth"></div>
+        <div class="log-line system" data-text="> Connecting to Urban Assembly Gateway School for Technology..."></div>
+        <div class="log-line system" data-text="> Hackathon mode: ENABLED."></div>
+
+        <div class="type-line" data-text="By joining Urban Assembly Gateway School for Technology and finally finding my tech people."></div>
+        <div class="type-line" data-text="By spending weekends at hackathons instead of just hanging out, learning to build under pressure."></div>
+        <div class="type-line" data-text="By jumping into early internships where nothing was 'easy mode', but everything was growth."></div>
+      </div>
+    </section>
+
+    <!-- PANEL 3: College -->
+    <section class="panel" data-step="03">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-dot dot-red"></div>
+          <div class="terminal-dot dot-yellow"></div>
+          <div class="terminal-dot dot-green"></div>
+          <span class="terminal-title">Phase 2 · College</span>
+        </div>
+
+        <div class="log-line command" data-text="$ ./journey.sh --phase college"></div>
+        <div class="log-line system" data-text="> Compiling: algorithms, systems, and a lot of late-night debugging..."></div>
+
+        <div class="type-line" data-text="By wrestling with algorithms that didn’t click the first time, until the 'aha' finally landed."></div>
+        <div class="type-line" data-text="By turning late-night debugging into a normal Tuesday instead of a crisis."></div>
+        <div class="type-line" data-text="By using internships to ship real features, not just classroom assignments."></div>
+      </div>
+    </section>
+
+    <!-- PANEL 4: Now / SRE -->
+    <section class="panel" data-step="04">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-dot dot-red"></div>
+          <div class="terminal-dot dot-yellow"></div>
+          <div class="terminal-dot dot-green"></div>
+          <span class="terminal-title">Phase 3 · Now (SRE / Builder)</span>
+        </div>
+
+        <div class="log-line command" data-text="$ ./journey.sh --phase now"></div>
+        <div class="log-line system" data-text="> Attaching to production systems..."></div>
+        <div class="log-line system" data-text="> Observability, reliability, homelabs, and continuous learning online."></div>
+
+        <div class="type-line" data-text="By owning large-scale systems and the alerts that come with them, not just watching from the sidelines."></div>
+        <div class="type-line" data-text="By building dashboards and automations that make other engineers faster and safer."></div>
+        <div class="type-line" data-text="By experimenting in my homelab, shipping personal projects, and learning in public."></div>
+        <div class="type-line" data-text="By asking the same question every day: how far can grit and curiosity really go?"></div>
+
+        <p class="hint">End of this chapter. <span>Scroll ←</span> to replay, or refresh to rerun <code>journey.sh</code>.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const strip = document.getElementById("strip");
+      const panels = Array.from(document.querySelectorAll(".panel"));
+
+      // For each panel, collect the lines that should type
+      const panelLines = panels.map((panel) =>
+        Array.from(panel.querySelectorAll(".type-line, .log-line.command, .log-line.system"))
+      );
+
+      let currentPanel = 0;
+      let currentLine = 0;
+      let charIndex = 0;
+      let typing = false;
+      let typingTimeout = null;
+      let fastForward = false;
+
+      function resetPanelText(panelIndex) {
+        const lines = panelLines[panelIndex] || [];
+        lines.forEach((line) => {
+          line.textContent = "";
+        });
+      }
+
+      function startTypingPanel(panelIndex) {
+        if (panelIndex < 0 || panelIndex >= panels.length) return;
+        currentPanel = panelIndex;
+        currentLine = 0;
+        charIndex = 0;
+        fastForward = false;
+        resetPanelText(panelIndex);
+        typing = true;
+        typeNextChar();
+      }
+
+      function typeNextChar() {
+        if (!typing) return;
+        const lines = panelLines[currentPanel];
+        if (!lines || !lines[currentLine]) {
+          // No more lines in this panel
+          typing = false;
+          scrollToNextPanel();
+          return;
+        }
+
+        // If user scrolled while typing: finish this panel instantly and move on
+        if (fastForward) {
+          finishPanelInstantly();
+          return;
+        }
+
+        const lineEl = lines[currentLine];
+        const fullText = lineEl.getAttribute("data-text") || "";
+
+        // Add caret to active line
+        lines.forEach((l) => l.classList.remove("caret"));
+        lineEl.classList.add("caret");
+
+        lineEl.textContent = fullText.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex < fullText.length) {
+          typingTimeout = setTimeout(typeNextChar, 35); // typing speed
+        } else {
+          // Line finished
+          lineEl.classList.remove("caret");
+          currentLine++;
+          charIndex = 0;
+          if (currentLine < lines.length) {
+            typingTimeout = setTimeout(typeNextChar, 220);
+          } else {
+            // Panel finished – auto-scroll to next after short pause
+            typing = false;
+            setTimeout(scrollToNextPanel, 400);
+          }
+        }
+      }
+
+      function finishPanelInstantly() {
+        const lines = panelLines[currentPanel] || [];
+        lines.forEach((line) => {
+          const full = line.getAttribute("data-text") || "";
+          line.textContent = full;
+          line.classList.remove("caret");
+        });
+        typing = false;
+        fastForward = false;
+        scrollToNextPanel();
+      }
+
+      function scrollToNextPanel() {
+        const nextIndex = Math.min(currentPanel + 1, panels.length - 1);
+        if (nextIndex === currentPanel) return; // already at last
+
+        currentPanel = nextIndex;
+        const targetLeft = nextIndex * window.innerWidth;
+
+        strip.scrollTo({
+          left: targetLeft,
+          behavior: "smooth",
+        });
+
+        // Start typing next panel after scroll has started
+        setTimeout(() => {
+          startTypingPanel(nextIndex);
+        }, 500);
+      }
+
+      function handleUserScrollIntent() {
+        if (typing) {
+          // If currently typing, fast-forward entire panel
+          fastForward = true;
+          if (typingTimeout) {
+            clearTimeout(typingTimeout);
+            typingTimeout = null;
+          }
+          typeNextChar();
+        } else {
+          // Not typing – go to next panel
+          scrollToNextPanel();
+        }
+      }
+
+      // Convert vertical wheel into horizontal scroll + story advance
+      strip.addEventListener(
+        "wheel",
+        (e) => {
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            strip.scrollBy({
+              left: e.deltaY,
+              behavior: "smooth",
+            });
+          }
+          handleUserScrollIntent();
+        },
+        { passive: false }
+      );
+
+      // Keyboard navigation
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "PageDown") {
+          e.preventDefault();
+          handleUserScrollIntent();
+        }
+      });
+
+      // Start on first panel
+      startTypingPanel(0);
+    })();
+  </script>
+</body>
+</html>
