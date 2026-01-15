@@ -96,43 +96,15 @@
         }
 
         .projects-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 4rem 2rem;
+        }
+
+        .projects-header {
             text-align: center;
-        }
-
-        /* Under Construction Section */
-        .under-construction {
+            margin-bottom: 4rem;
             animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .construction-icon {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.7;
-                transform: scale(1.05);
-            }
         }
 
         .projects-title {
@@ -154,40 +126,149 @@
             letter-spacing: 1px;
         }
 
-        .construction-message {
-            max-width: 600px;
-            margin: 0 auto 3rem;
+        /* Pi-hole Section */
+        .pihole-section {
+            margin-bottom: 4rem;
+            animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
-        .construction-message p {
-            font-size: 1.1rem;
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .status-badge {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-badge.connected {
+            background: #4ecdc4;
+        }
+
+        .pihole-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .metric-card:hover {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(255, 138, 128, 0.1) 100%);
+            border-color: rgba(255, 107, 107, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.2);
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .pihole-info {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pihole-info p {
+            font-size: 1rem;
+            color: #aaa;
             line-height: 1.8;
-            color: #bbb;
-            margin-bottom: 1.5rem;
         }
 
-        /* Status Card */
-        .status-card {
+        .connection-status {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(78, 205, 196, 0.2);
+        }
+
+        .connection-status.connected {
+            color: #4ecdc4;
+        }
+
+        .connection-status.disconnected {
+            color: #ff6b6b;
+        }
+
+        /* Under Construction Section */
+        .other-projects {
+            text-align: center;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .under-construction-message {
             background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 107, 107, 0.3);
             border-radius: 25px;
-            padding: 2.5rem;
+            padding: 3rem 2rem;
             margin: 2rem 0;
         }
 
-        .status-label {
-            font-size: 1rem;
-            color: #aaa;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .construction-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
-        .status-text {
-            font-size: 1.3rem;
-            color: #ff6b6b;
-            font-weight: 600;
+        .under-construction-message h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .under-construction-message p {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.8;
         }
 
         /* CTA Section */
@@ -197,6 +278,7 @@
             border-radius: 25px;
             padding: 3rem;
             margin-top: 3rem;
+            text-align: center;
         }
 
         .cta-title {
@@ -245,30 +327,46 @@
             width: 100%;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .projects-title {
                 font-size: 3rem;
             }
 
-            .construction-icon {
-                font-size: 3.5rem;
+            .section-title {
+                font-size: 1.5rem;
             }
 
-            .projects-subtitle {
-                font-size: 1.2rem;
+            .pihole-metrics {
+                grid-template-columns: 1fr;
             }
 
-            .construction-message p {
-                font-size: 1rem;
-            }
-
-            .status-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .cta-section {
-                padding: 2rem 1.5rem;
+            .metric-value {
+                font-size: 2rem;
             }
 
             .projects-container {
@@ -282,6 +380,10 @@
             main {
                 padding-top: 6rem;
             }
+
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -290,7 +392,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-link">Home</a>
-             <a href="#aboutme" class="nav-link">About Me</a>
+            <a href="#aboutme" class="nav-link">About Me</a>
             <a href="#projects" class="nav-link active">Projects</a>
             <a href="hire.html" class="nav-link">Hire Me</a>
         </div>
@@ -299,32 +401,145 @@
     <!-- Main Content -->
     <main>
         <div class="projects-container">
-            <div class="under-construction">
-                <div class="construction-icon">🔧</div>
+            <div class="projects-header">
                 <h1 class="projects-title">Projects</h1>
-                <p class="projects-subtitle">Under Construction</p>
+            </div>
 
-                <div class="construction-message">
-                    <p>I'm currently showcasing my work and project portfolio. This page is being built with the same care and attention I put into my engineering work.</p>
-                    <p>Check back soon to see detailed case studies, technical implementations, and the innovative solutions I've built.</p>
-                </div>
-
-                <div class="status-card">
-                    <div class="status-label">Current Status</div>
-                    <div class="status-text">Coming Soon 🚀</div>
-                </div>
-
-                <div class="cta-section">
-                    <h2 class="cta-title">Want to Learn More?</h2>
-                    <p class="cta-text">In the meantime, feel free to reach out and let's discuss how I can help with your engineering needs.</p>
-                    <div class="cta-links">
-                        <a href="hire.html" class="cta-link">View My Services</a>
-                        <a href="mailto:journisha77@gmail.com" class="cta-link">Get In Touch</a>
-                        <a href="https://github.com/journishadolphin" class="cta-link">GitHub</a>
+            <!-- Pi-hole Section -->
+            <div class="pihole-section">
+                <h2 class="section-title">
+                    <span class="status-badge" id="statusBadge"></span>
+                    Pi-hole Dashboard
+                </h2>
+                <div class="pihole-metrics" id="piholeMetrics">
+                    <div class="metric-card loading">
+                        <div class="metric-label">Connecting</div>
+                        <div class="metric-value">...</div>
                     </div>
+                </div>
+                <div class="pihole-info">
+                    <p>Running a Pi-hole DNS server to block ads and malicious domains network-wide. Real-time metrics updating automatically.</p>
+                    <div class="connection-status" id="connectionStatus">Connecting to server...</div>
+                </div>
+            </div>
+
+            <!-- Other Projects Section -->
+            <div class="other-projects">
+                <h2 class="section-title">🚀 More Projects Coming Soon</h2>
+                <div class="under-construction-message">
+                    <div class="construction-icon">🔧</div>
+                    <h3>Additional Projects</h3>
+                    <p>I'm currently working on more exciting projects. Check back soon to see detailed case studies, technical implementations, and innovative solutions!</p>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2 class="cta-title">Want to Learn More?</h2>
+                <p class="cta-text">Interested in my work or have an engineering challenge? Let's connect!</p>
+                <div class="cta-links">
+                    <a href="hire.html" class="cta-link">View My Services</a>
+                    <a href="mailto:journisha77@gmail.com" class="cta-link">Get In Touch</a>
+                    <a href="https://github.com/journishadolphin" class="cta-link">GitHub</a>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+        // Configuration - Update these with your server details
+        const PIHOLE_SERVER = window.location.hostname === 'localhost' 
+            ? 'ws://localhost:3001' 
+            : `wss://${window.location.host}`;
+
+        let ws = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
+
+        function connect() {
+            try {
+                ws = new WebSocket(PIHOLE_SERVER);
+
+                ws.onopen = () => {
+                    console.log('Connected to Pi-hole metrics server');
+                    updateStatus('connected', '🟢 Connected');
+                    reconnectAttempts = 0;
+                };
+
+                ws.onmessage = (event) => {
+                    const data = JSON.parse(event.data);
+                    displayMetrics(data);
+                };
+
+                ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                    updateStatus('disconnected', '🔴 Connection Error');
+                };
+
+                ws.onclose = () => {
+                    console.log('Disconnected from server');
+                    updateStatus('disconnected', '🔴 Disconnected - reconnecting...');
+                    
+                    if (reconnectAttempts < maxReconnectAttempts) {
+                        reconnectAttempts++;
+                        setTimeout(() => {
+                            console.log(`Reconnection attempt ${reconnectAttempts}`);
+                            connect();
+                        }, 3000 * reconnectAttempts);
+                    }
+                };
+            } catch (error) {
+                console.error('Connection failed:', error);
+                updateStatus('disconnected', '🔴 Failed to connect');
+            }
+        }
+
+        function updateStatus(state, message) {
+            const badge = document.getElementById('statusBadge');
+            const status = document.getElementById('connectionStatus');
+            
+            if (state === 'connected') {
+                badge.classList.add('connected');
+            } else {
+                badge.classList.remove('connected');
+            }
+            
+            status.className = `connection-status ${state}`;
+            status.textContent = message;
+        }
+
+        function displayMetrics(data) {
+            const container = document.getElementById('piholeMetrics');
+            container.innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-icon">🟢</div>
+                    <div class="metric-label">Queries Today</div>
+                    <div class="metric-value">${(data.queries_today || 0).toLocaleString()}</div>
+                    <div class="metric-description">Total DNS requests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🛑</div>
+                    <div class="metric-label">Blocked Today</div>
+                    <div class="metric-value">${(data.ads_blocked_today || 0).toLocaleString()}</div>
+                    <div class="metric-description">Ads & malware blocked</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-label">Block Rate</div>
+                    <div class="metric-value">${((data.ads_percentage || 0).toFixed(1))}%</div>
+                    <div class="metric-description">Percentage blocked</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🔄</div>
+                    <div class="metric-label">Unique Domains</div>
+                    <div class="metric-value">${(data.unique_domains || 0).toLocaleString()}</div>
+                    <div class="metric-description">Contacted domains</div>
+                </div>
+            `;
+        }
+
+        // Connect on page load
+        connect();
+    </script>
 </body>
 </html>
