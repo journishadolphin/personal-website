@@ -14,14 +14,19 @@
             box-sizing: border-box;
         }
 
-        body, html {
-            background-color: black;
-            font-family: 'Poppins', sans-serif;
-            color: #ccc;
+        html, body {
+            width: 100%;
             overflow-x: hidden;
         }
 
-        /* Navbar Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            background: #000;
+            transition: 0.3s ease-out;
+        }
+
+        /* Navbar */
         nav {
             position: fixed;
             top: 2rem;
@@ -40,25 +45,16 @@
             border-radius: 50px;
             padding: 0.8rem 1.5rem;
             box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container:hover {
-            background: rgba(0, 0, 0, 0.9);
-            border-color: rgba(255, 107, 107, 0.4);
-            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
         }
 
         nav a {
-            position: relative;
             padding: 0.7rem 1.5rem;
             font-size: 1rem;
             font-weight: 500;
             color: #aaa;
             text-decoration: none;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            transition: all 0.3s;
             white-space: nowrap;
         }
 
@@ -85,100 +81,143 @@
             }
         }
 
-        /* Main Content */
-        main {
-            padding-top: 8rem;
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .projects-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .projects-header {
+            padding: 100px 2rem 50px;
             text-align: center;
-            margin-bottom: 4rem;
-            animation: fadeIn 0.8s ease-out;
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 100%);
+            position: relative;
         }
 
-        .projects-title {
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
             font-size: 5rem;
+            line-height: 1.2;
             font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.1;
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .projects-subtitle {
-            font-size: 1.5rem;
-            color: #ff6b6b;
-            margin-bottom: 2rem;
-            font-weight: 600;
+        .hero p {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 300;
             letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
-        /* Pi-hole Section */
-        .pihole-section {
-            margin-bottom: 4rem;
-            animation: fadeIn 0.8s ease-out 0.2s both;
+        .scroll-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: bounce 2s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 2rem 50px;
+            min-height: auto;
         }
 
         .section-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 3rem;
             color: #fff;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            justify-content: center;
+            margin-bottom: 4rem;
+            text-align: center;
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .status-badge {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ff6b6b;
-            animation: pulse 2s ease-in-out infinite;
+        /* Pi-hole Section */
+        #piholeSection {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
         }
 
-        .status-badge.connected {
-            background: #4ecdc4;
-        }
-
-        .pihole-metrics {
+        .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .metric-card {
-            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(78, 205, 196, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 15px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
-            cursor: pointer;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .metric-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .metric-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .metric-card:nth-child(4) {
+            animation-delay: 0.3s;
         }
 
         .metric-card:hover {
-            background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(255, 138, 128, 0.1) 100%);
-            border-color: rgba(255, 107, 107, 0.5);
+            border-color: #4ecdc4;
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.2);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.2);
         }
 
         .metric-icon {
@@ -186,112 +225,190 @@
             margin-bottom: 1rem;
         }
 
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+        }
+
         .metric-label {
             font-size: 0.9rem;
             color: #aaa;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
         }
 
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
+        #piholeSection .info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .metric-description {
-            font-size: 0.85rem;
-            color: #888;
+        #piholeSection .info p {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
-        .pihole-info {
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
-            border: 1px solid rgba(78, 205, 196, 0.3);
+        /* Projects Section */
+        #projectsSection {
+            background: #000;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.05) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
             border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.6s ease-out;
         }
 
-        .pihole-info p {
-            font-size: 1rem;
-            color: #aaa;
-            line-height: 1.8;
+        .project-card:nth-child(2) {
+            animation-delay: 0.1s;
         }
 
-        .connection-status {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(78, 205, 196, 0.2);
+        .project-card:nth-child(3) {
+            animation-delay: 0.2s;
         }
 
-        .connection-status.connected {
-            color: #4ecdc4;
+        .project-card:hover {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(78, 205, 196, 0.1) 100%);
+            border-color: rgba(255, 107, 107, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
         }
 
-        .connection-status.disconnected {
+        .project-card h3 {
+            font-size: 1.8rem;
             color: #ff6b6b;
-        }
-
-        /* Under Construction Section */
-        .other-projects {
-            text-align: center;
-            animation: fadeIn 0.8s ease-out 0.4s both;
-        }
-
-        .under-construction-message {
-            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 25px;
-            padding: 3rem 2rem;
-            margin: 2rem 0;
-        }
-
-        .construction-icon {
-            font-size: 3rem;
             margin-bottom: 1rem;
+            animation: slideInRight 0.6s ease-out;
         }
 
-        .under-construction-message h2 {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .under-construction-message p {
+        .project-card p {
             font-size: 1rem;
             color: #aaa;
-            line-height: 1.8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            animation: slideInRight 0.6s ease-out 0.1s both;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            animation: slideInUp 0.6s ease-out 0.2s both;
+        }
+
+        .tech-badge {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.5);
+            color: #4ecdc4;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(78, 205, 196, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .code-sample {
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid #4ecdc4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+            color: #4ecdc4;
+            line-height: 1.6;
+            animation: slideInUp 0.6s ease-out 0.3s both;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 600;
+            width: fit-content;
+            animation: slideInUp 0.6s ease-out 0.4s both;
+        }
+
+        .project-link:hover {
+            background: #ff6b6b;
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* CTA Section */
-        .cta-section {
+        #ctaSection {
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
-            border: 1px solid rgba(255, 107, 107, 0.2);
-            border-radius: 25px;
-            padding: 3rem;
-            margin-top: 3rem;
-            text-align: center;
         }
 
-        .cta-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+        .cta-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
             color: #fff;
             margin-bottom: 1.5rem;
         }
 
-        .cta-text {
-            font-size: 1rem;
+        .cta-content p {
+            font-size: 1.1rem;
             color: #aaa;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.8;
         }
 
@@ -303,86 +420,42 @@
         }
 
         .cta-link {
+            padding: 1rem 2rem;
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.5);
             color: #ff6b6b;
             text-decoration: none;
-            font-size: 1rem;
+            border-radius: 8px;
             font-weight: 600;
-            position: relative;
             transition: all 0.3s;
-            padding: 0.5rem 0;
         }
 
-        .cta-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
-            transition: width 0.3s;
-        }
-
-        .cta-link:hover::after {
-            width: 100%;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .loading {
-            animation: pulse 1.5s ease-in-out infinite;
+        .cta-link:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ff8a80);
+            color: white;
+            transform: translateY(-3px);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .projects-title {
+            h1 {
                 font-size: 3rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
-            }
-
-            .pihole-metrics {
-                grid-template-columns: 1fr;
-            }
-
-            .metric-value {
                 font-size: 2rem;
             }
 
-            .projects-container {
-                padding: 2rem 1rem;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
 
             nav {
                 top: 1rem;
             }
 
-            main {
-                padding-top: 6rem;
-            }
-
-            .cta-section {
-                padding: 2rem 1.5rem;
+            section {
+                padding: 60px 1.5rem;
             }
         }
     </style>
@@ -398,148 +471,131 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        <div class="projects-container">
-            <div class="projects-header">
-                <h1 class="projects-title">Projects</h1>
-            </div>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Projects & Infrastructure</h1>
+            <p>SRE • Automation • Web Development</p>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </div>
 
-            <!-- Pi-hole Section -->
-            <div class="pihole-section">
-                <h2 class="section-title">
-                    <span class="status-badge" id="statusBadge"></span>
-                    Pi-hole Dashboard
-                </h2>
-                <div class="pihole-metrics" id="piholeMetrics">
-                    <div class="metric-card loading">
-                        <div class="metric-label">Connecting</div>
-                        <div class="metric-value">...</div>
-                    </div>
-                </div>
-                <div class="pihole-info">
-                    <p>Running a Pi-hole DNS server to block ads and malicious domains network-wide. Real-time metrics updating automatically.</p>
-                    <div class="connection-status" id="connectionStatus">Connecting to server...</div>
-                </div>
-            </div>
-
-            <!-- Other Projects Section -->
-            <div class="other-projects">
-                <h2 class="section-title">🚀 More Projects Coming Soon</h2>
-                <div class="under-construction-message">
-                    <div class="construction-icon">🔧</div>
-                    <h3>Additional Projects</h3>
-                    <p>I'm currently working on more exciting projects. Check back soon to see detailed case studies, technical implementations, and innovative solutions!</p>
-                </div>
-            </div>
-
-            <!-- CTA Section -->
-            <div class="cta-section">
-                <h2 class="cta-title">Want to Learn More?</h2>
-                <p class="cta-text">Interested in my work or have an engineering challenge? Let's connect!</p>
-                <div class="cta-links">
-                    <a href="hire.html" class="cta-link">View My Services</a>
-                    <a href="mailto:journisha77@gmail.com" class="cta-link">Get In Touch</a>
-                    <a href="https://github.com/journishadolphin" class="cta-link">GitHub</a>
-                </div>
+    <!-- Pi-hole Metrics Section -->
+    <section id="piholeSection">
+        <h2 class="section-title">📊 Live Pi-hole Network Metrics</h2>
+        <div class="metrics-grid" id="metricsContainer">
+            <div class="metric-card">
+                <div class="metric-icon">🟡</div>
+                <div class="metric-label">Loading...</div>
+                <div class="metric-value">--</div>
             </div>
         </div>
-    </main>
+        <div class="info">
+            <p>Network-wide DNS filtering protecting all devices on the network</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projectsSection">
+        <h2 class="section-title">Automation & SRE Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1: Web Form Testing -->
+            <div class="project-card">
+                <div>
+                    <h3>Automated Web Form Testing</h3>
+                    <p>Automated testing suite for web form validation, error handling, and user workflows. Ensures form reliability and reduces manual testing overhead.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Selenium</span>
+                        <span class="tech-badge">Testing</span>
+                    </div>
+                    <div class="code-sample">from selenium import webdriver
+driver = webdriver.Chrome()
+driver.get("form_url")
+# Automate form submission</div>
+                </div>
+                <a href="https://github.com/journishadolphin/automated-web-form-testing" class="project-link">View on GitHub →</a>
+            </div>
+
+            <!-- Project 2: Pi-hole Automation -->
+            <div class="project-card">
+                <div>
+                    <h3>Pi-hole Automation</h3>
+                    <p>Automation scripts for Pi-hole management, DNS configuration, and network monitoring. Streamlines deployment and maintenance of network-wide ad blocking.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Bash</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">DNS</span>
+                        <span class="tech-badge">Networking</span>
+                    </div>
+                    <div class="code-sample">#!/bin/bash
+# Pi-hole DNS management
+pihole -a -p "new_password"
+pihole restartdns</div>
+                </div>
+                <a href="https://github.com/journishadolphin/pihole-automation" class="project-link">View on GitHub →</a>
+            </div>
+
+            <!-- Project 3: Website Infrastructure -->
+            <div class="project-card">
+                <div>
+                    <h3>Website Infrastructure</h3>
+                    <p>Personal website hosted on Raspberry Pi with Cloudflare Tunnel, Pi-hole DNS, and Nginx. Zero-trust architecture with network-wide ad blocking and DHCP management.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Raspberry Pi</span>
+                        <span class="tech-badge">Cloudflare</span>
+                        <span class="tech-badge">Nginx</span>
+                        <span class="tech-badge">DNS/DHCP</span>
+                    </div>
+                    <div class="code-sample">sudo systemctl status pihole-FTL
+sudo systemctl restart nginx
+cloudflared tunnel run website-tunnel</div>
+                </div>
+                <a href="https://journishadolphin.com" class="project-link">Visit Website →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="ctaSection">
+        <div class="cta-content">
+            <h2>Explore My Portfolio</h2>
+            <p>Check out my complete portfolio including college projects, app development, web design, and more engineering work on GitHub.</p>
+            <div class="cta-links">
+                <a href="https://github.com/journishadolphin" class="cta-link">View All →</a>
+            </div>
+        </div>
+    </section>
 
     <script>
-        // Configuration - Update these with your server details
-        const PIHOLE_SERVER = window.location.hostname === 'localhost' 
-            ? 'ws://localhost:3001' 
-            : `wss://${window.location.host}`;
-
-        let ws = null;
-        let reconnectAttempts = 0;
-        const maxReconnectAttempts = 5;
-
-        function connect() {
+        // Pi-hole Metrics
+        async function fetchPiholeMetrics() {
             try {
-                ws = new WebSocket(PIHOLE_SERVER);
+                const response = await fetch('http://192.168.1.166/admin/api.php?summary');
+                const data = await response.json();
 
-                ws.onopen = () => {
-                    console.log('Connected to Pi-hole metrics server');
-                    updateStatus('connected', '🟢 Connected');
-                    reconnectAttempts = 0;
-                };
+                const metrics = [
+                    { icon: '🟢', label: 'Queries Today', value: (data.dns_queries_today || 0).toLocaleString() },
+                    { icon: '🛑', label: 'Blocked Today', value: (data.ads_blocked_today || 0).toLocaleString() },
+                    { icon: '📊', label: 'Block Rate', value: (data.ads_percentage_today || 0).toFixed(1) + '%' },
+                    { icon: '✓', label: 'Status', value: data.status === 'enabled' ? 'Active' : 'Off' }
+                ];
 
-                ws.onmessage = (event) => {
-                    const data = JSON.parse(event.data);
-                    displayMetrics(data);
-                };
-
-                ws.onerror = (error) => {
-                    console.error('WebSocket error:', error);
-                    updateStatus('disconnected', '🔴 Connection Error');
-                };
-
-                ws.onclose = () => {
-                    console.log('Disconnected from server');
-                    updateStatus('disconnected', '🔴 Disconnected - reconnecting...');
-                    
-                    if (reconnectAttempts < maxReconnectAttempts) {
-                        reconnectAttempts++;
-                        setTimeout(() => {
-                            console.log(`Reconnection attempt ${reconnectAttempts}`);
-                            connect();
-                        }, 3000 * reconnectAttempts);
-                    }
-                };
+                const container = document.getElementById('metricsContainer');
+                container.innerHTML = metrics.map(m => `
+                    <div class="metric-card">
+                        <div class="metric-icon">${m.icon}</div>
+                        <div class="metric-label">${m.label}</div>
+                        <div class="metric-value">${m.value}</div>
+                    </div>
+                `).join('');
             } catch (error) {
-                console.error('Connection failed:', error);
-                updateStatus('disconnected', '🔴 Failed to connect');
+                console.error('Error fetching metrics:', error);
             }
         }
 
-        function updateStatus(state, message) {
-            const badge = document.getElementById('statusBadge');
-            const status = document.getElementById('connectionStatus');
-            
-            if (state === 'connected') {
-                badge.classList.add('connected');
-            } else {
-                badge.classList.remove('connected');
-            }
-            
-            status.className = `connection-status ${state}`;
-            status.textContent = message;
-        }
-
-        function displayMetrics(data) {
-            const container = document.getElementById('piholeMetrics');
-            container.innerHTML = `
-                <div class="metric-card">
-                    <div class="metric-icon">🟢</div>
-                    <div class="metric-label">Queries Today</div>
-                    <div class="metric-value">${(data.queries_today || 0).toLocaleString()}</div>
-                    <div class="metric-description">Total DNS requests</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon">🛑</div>
-                    <div class="metric-label">Blocked Today</div>
-                    <div class="metric-value">${(data.ads_blocked_today || 0).toLocaleString()}</div>
-                    <div class="metric-description">Ads & malware blocked</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon">📊</div>
-                    <div class="metric-label">Block Rate</div>
-                    <div class="metric-value">${((data.ads_percentage || 0).toFixed(1))}%</div>
-                    <div class="metric-description">Percentage blocked</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon">🔄</div>
-                    <div class="metric-label">Unique Domains</div>
-                    <div class="metric-value">${(data.unique_domains || 0).toLocaleString()}</div>
-                    <div class="metric-description">Contacted domains</div>
-                </div>
-            `;
-        }
-
-        // Connect on page load
-        connect();
+        window.addEventListener('load', fetchPiholeMetrics);
+        setInterval(fetchPiholeMetrics, 30000);
     </script>
 </body>
 </html>
