@@ -235,8 +235,8 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+            gap: 1rem;
             margin-bottom: 4rem;
         }
 
@@ -244,7 +244,7 @@
             background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
             border: 1px solid rgba(255, 107, 107, 0.3);
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.4s ease;
         }
@@ -255,7 +255,7 @@
         }
 
         .stat-number {
-            font-size: 3.5rem;
+            font-size: 1rem;
             font-weight: 800;
             background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
             -webkit-background-clip: text;
@@ -318,61 +318,165 @@
             line-height: 1.6;
         }
 
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
-            border: 1px solid rgba(255, 107, 107, 0.2);
-            border-radius: 25px;
-            padding: 4rem;
-            text-align: center;
-            margin-top: 6rem;
+         /* Resume Timeline */
+        .timeline-section {
+            margin: 6rem 0;
         }
 
-        .contact-title {
-            font-size: 2rem;
+        .timeline-title {
+            font-size: 2.5rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
+            text-align: center;
         }
 
-        .contact-links {
+        .resume-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resume-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #ff6b6b 0%, #ff8a80 50%, #4ecdc4 100%);
+        }
+
+        .timeline-entry {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            border: 3px solid #000;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+            z-index: 1;
+        }
+
+        .timeline-header {
+            margin-bottom: 1rem;
+        }
+
+        .timeline-company-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-position {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-dates {
+            font-size: 0.95rem;
+            color: #aaa;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-dates::before {
+            content: '📅';
+            font-size: 0.9rem;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .timeline-achievements li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #bbb;
+        }
+
+        .timeline-achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #ff8a80;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+         /* Social Links */
+        .social-links {
             display: flex;
             gap: 2rem;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+            margin: 2rem 0 3rem 0;
         }
 
-        .contact-link {
-            color: #ff6b6b;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            position: relative;
-            transition: all 0.3s;
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .contact-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8a80 100%);
-            transition: width 0.3s;
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 138, 128, 0.1) 100%);
+            border-color: rgba(255, 107, 107, 0.6);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
         }
 
-        .contact-link:hover::after {
-            width: 100%;
+        .social-link img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
 
-        .contact-info {
-            color: #aaa;
-            font-size: 1rem;
-            margin-top: 2rem;
-            line-height: 1.8;
+        .social-link:hover img {
+            opacity: 1;
         }
+
+
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -395,10 +499,14 @@
 
             .hire-container {
                 padding: 2rem 1rem;
-            }
+
+                
 
             nav {
                 top: 1rem;
+            
+
+
             }
 
             main {
@@ -409,6 +517,8 @@
                 font-size: 2.5rem;
             }
         }
+
+
     </style>
 </head>
 <body>
@@ -427,6 +537,17 @@
         <div class="hire-container">
             <h1 class="hire-title">Hire Me</h1>
             <p class="hire-subtitle">Let's Build Resilient Systems Together</p>
+              <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://linkedin.com/in/journisha-dolphin-3b1b40156/" target="_blank" class="social-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/journishadolphin" target="_blank" class="social-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+                </a>
+            </div>
+           
+
 
             <!-- Intro -->
             <div class="hire-intro">
@@ -465,65 +586,85 @@
                 </div>
             </section>
 
-            <!-- Highlights -->
-            <section class="highlights-section">
-                <h2 class="highlights-title">Notable Achievements</h2>
-                <ul class="highlights-list">
-                    <li>Built and maintained advanced monitoring dashboards using Splunk, Dynatrace, and Pivotal Cloud Foundry (PCF), ensuring optimal application health and proactive issue detection.</li>
-                    <li>Automated deployment workflows with Digital.ai Release, achieving a 40% reduction in manual effort and a 20% improvement in deployment time across multiple environments.</li>
-                    <li>Audited over 1,000+ user accounts and mitigated 45+ software vulnerabilities, strengthening platform security and compliance posture.</li>
-                </ul>
-            </section>
+            <!-- Resume Timeline -->
+            <section class="timeline-section">
+                <h2 class="timeline-title">My Professional Journey</h2>
+                <div class="resume-timeline">
+                    <article class="timeline-entry">
+                        <div class="timeline-header">
+                            <h3 class="timeline-company-name">Mastercard</h3>
+                            <p class="timeline-position">Business Operations Engineer (DevOps + SRE)</p>
+                            <p class="timeline-dates">Aug 2024 - Present · New York, NY</p>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Built observability dashboards and monitoring solutions using Splunk, Dynatrace, and Pivotal Cloud Foundry (PCF) to ensure platform reliability and proactive incident detection</li>
+                            <li>Troubleshot and resolved issues in distributed systems during on-call rotations, improving service availability, latency, and error rates</li>
+                            <li>Automated Change Request workflows with Digital.ai Release, reducing manual deployment effort</li>
+                            <li>Developed and executed SQL scripts for database validation, enforcing SLOs/SLAs and strengthening overall system resilience</li>
+                        </ul>
+                        <span class="timeline-badge">Current Role</span>
+                    </article>
 
-            <!-- Stats -->
-            <section class="stats-section">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">4</div>
-                        <div class="stat-label">Years of Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">40%</div>
-                        <div class="stat-label">Efficiency Increase</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Users Supported</div>
-                    </div>
+                    <article class="timeline-entry">
+                        <div class="timeline-header">
+                            <h3 class="timeline-company-name">Mastercard</h3>
+                            <p class="timeline-position">Business Operations Engineer Intern</p>
+                            <p class="timeline-dates">Jun 2023 - Aug 2023 · New York, NY</p>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Analyzed 100+ alerts to improve signal-to-noise ratio and rewrote alerting logic to increase accuracy</li>
+                            <li>Collaborated with cross-functional teams to optimize monitoring systems</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-entry">
+                        <div class="timeline-header">
+                            <h3 class="timeline-company-name">Hospital for Special Surgery</h3>
+                            <p class="timeline-position">Data Analyst / Cyber Security Intern</p>
+                            <p class="timeline-dates">Jan 2021 - Jan 2022 · Remote</p>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Developed automated onboarding workflows and monitoring dashboards for 1,000+ EPIC user accounts</li>
+                            <li>Leveraged Prometheus and FastSOAR to improve observability, detect privilege mismatches, and remediate 45+ security vulnerabilities</li>
+                            <li>Enhanced system uptime and reliability through proactive monitoring solutions</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-entry">
+                        <div class="timeline-header">
+                            <h3 class="timeline-company-name">America On Tech, Inc.</h3>
+                            <p class="timeline-position">Teaching Assistant</p>
+                            <p class="timeline-dates">Sep 2019 - Apr 2020 · Hybrid</p>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Instructed 20+ students in the Tech Flex Leaders Program on HTML, CSS, and JavaScript topics</li>
+                            <li>Resolved network, hardware, and software issues by debugging code and resolving connectivity issues</li>
+                        </ul>
+                    </article>
+
+                    <article class="timeline-entry">
+                        <div class="timeline-header">
+                            <h3 class="timeline-company-name">PureWow</h3>
+                            <p class="timeline-position">Mobile App Developer Intern</p>
+                            <p class="timeline-dates">Jul 2019 - Aug 2019 · New York, NY</p>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Developed and integrated mobile features using React Native and Android Studio</li>
+                            <li>Collaborated via Git and JIRA in an Agile environment while building foundational knowledge of Linux and tech operations</li>
+                        </ul>
+                    </article>
                 </div>
             </section>
 
-            <!-- Companies -->
-            <section class="companies-section">
-                <h2 class="companies-title">Organizations I've Worked With</h2>
-                <ul class="companies-list">
-                    <li class="company-item">
-                        <div class="company-name">Mastercard</div>
-                        <div class="company-role">Business Operations Engineer<br>DevOps & Site Reliability</div>
-                    </li>
-                    <li class="company-item">
-                        <div class="company-name">Hospital for Special Surgery</div>
-                        <div class="company-role">Data Analyst<br>Cyber Security Intern</div>
-                    </li>
-                    <li class="company-item">
-                        <div class="company-name">America On Tech, Inc.</div>
-                        <div class="company-role">Assistant STEM Teacher<br>Peer Mentor</div>
-                    </li>
-                    <li class="company-item">
-                        <div class="company-name">PureWow</div>
-                        <div class="company-role">Mobile App Developer<br>Intern</div>
-                    </li>
-                </ul>
-            </section>
 
-            <!-- Contact -->
-            <section class="contact-section">
-                <h2 class="contact-title">Let's Connect</h2>
-                <div class="contact-info">
-                    <p><strong>Connect on:</strong> <a href="https://linkedin.com/in/journisha-dolphin-3b1b40156/" target="_blank" style="color: #ff6b6b;">LinkedIn</a> | <a href="https://github.com/journishadolphin" target="_blank" style="color: #ff6b6b;">GitHub</a></p>
-                </div>
-            </section>
-        </div>
-    </main>
-</body>
+           
+
+            
+
+            
+
+           
+            </div>
+        </main>
+    </body>
 </html>

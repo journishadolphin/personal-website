@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
     <script src="script.js"></script>
-    <style>
+     <style>
       * {
             margin: 0;
             padding: 0;
@@ -78,20 +78,6 @@
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
-        nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            background: #ff6b6b;
-            border-radius: 50%;
-            opacity: 0;
-            animation: dotPulse 0.6s ease-out forwards;
-        }
-
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -100,17 +86,6 @@
             to {
                 opacity: 1;
                 transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        @keyframes dotPulse {
-            0% {
-                transform: translateX(-50%) translateY(0) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-50%) translateY(-12px) scale(1);
-                opacity: 0;
             }
         }
 
@@ -144,7 +119,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            height: 100svh;
+            height: 100vh;
             width: 100%;
             background-color: white;
             position: relative;
@@ -263,7 +238,7 @@
         }
 
         section.hero-section {
-            height: 100svh;
+            height: 100vh;
         }
 
         section.section2 {
@@ -292,7 +267,7 @@
             background-color: white;
         }
 
-        /* Section 3 Styles */
+        /* Section 3 - Timeline Styles */
         .section3 {
             --bg: black;
             position: relative;
@@ -326,6 +301,14 @@
             letter-spacing: -2px;
         }
 
+        .section3-header h2 {
+            font-size: 2.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 3rem;
+        }
+
         .section3-header p {
             font-size: 1.3rem;
             color: #aaa;
@@ -333,260 +316,117 @@
             letter-spacing: 2px;
         }
 
-        /* Slider Styles */
-        :root {
-            --gap: 1.25rem;
-            --speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --closed: 5rem;
-            --open: 30rem;
-            --accent: #ff6b6b;
-        }
-
-        .head {
-            max-width: 1400px;
-            margin: auto;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 2rem;
+        /* Scroll Stack Carousel Styles */
+        .carousel-container {
             width: 100%;
-        }
-
-        .head h2 {
-            font: 400 1.5rem/1.2 'Poppins', sans-serif;
-            color: #fff;
-        }
-
-        .controls {
-            display: flex;
-            flex-direction: row;
-            gap: 0.5rem;
-        }
-
-        .nav-btn {
-            width: 2.5rem;
-            height: 2.5rem;
-            border: none;
-            border-radius: 50%;
-            background: rgba(255, 107, 107, 0.3);
-            color: #fff;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .nav-btn:hover {
-            background: var(--accent);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: default;
-        }
-
-        .slider {
-            max-width: 1400px;
-            margin: auto;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .track {
-            display: flex;
-            gap: var(--gap);
-            align-items: flex-start;
-            justify-content: center;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 40px;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        .track::-webkit-scrollbar {
-            display: none;
-        }
-
-        .project-card {
             position: relative;
-            flex: 0 0 var(--closed);
-            height: 26rem;
-            border-radius: 1rem;
-            overflow: hidden;
-            cursor: pointer;
-            transition: flex-basis var(--speed), transform var(--speed);
-            scroll-snap-align: center;
+            padding: 10vh 0;
         }
 
-        .project-card[active] {
-            flex-basis: var(--open);
-            transform: translateY(-6px);
-            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
-        }
-
-        .project-card__bg {
-            position: absolute;
-            inset: 0;
+        .stack-cards {
+            position: relative;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.75) saturate(75%);
-            transition: filter 0.3s, transform var(--speed);
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .project-card:hover .project-card__bg {
-            filter: brightness(0.9) saturate(100%);
-            transform: scale(1.06);
-        }
-
-        .project-card__content {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 0.7rem;
-            padding: 0;
-            background: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.85) 100%);
-            z-index: 2;
-        }
-
-        .project-card__title {
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.35rem;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .project-card__thumb,
-        .project-card__desc,
-        .project-card__btn {
-            display: none;
-        }
-
-        .project-card[active] .project-card__content {
-            flex-direction: row;
-            align-items: center;
-            padding: 1.2rem 2rem;
-            gap: 1.1rem;
-        }
-
-        .project-card[active] .project-card__title {
-            writing-mode: horizontal-tb;
-            transform: none;
-            font-size: 2.4rem;
-        }
-
-        .project-card[active] .project-card__thumb,
-        .project-card[active] .project-card__desc,
-        .project-card[active] .project-card__btn {
-            display: block;
-        }
-
-        .project-card__thumb {
-            width: 133px;
-            height: 269px;
-            border-radius: 0.45rem;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-card__desc {
-            color: #ddd;
-            font-size: 1rem;
-            line-height: 1.4;
-            max-width: 16rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .project-card__btn {
-            padding: 0.55rem 1.3rem;
-            border: none;
-            border-radius: 9999px;
-            background: var(--accent);
-            color: #fff;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .project-card__btn:hover {
-            background: #ff824f;
-        }
-
-        .dots {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        .dot {
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.35);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .dot.active {
-            background: var(--accent);
-            transform: scale(1.2);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+        .stack-card {
+            position: sticky;
+            top: 100px;
             width: 100%;
-            max-width: 1200px;
-        }
-
-        .feature {
+            height: 500px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(145deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 138, 128, 0.05) 100%);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 25px;
-            padding: 3.5rem 2.5rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            transform-origin: top center;
         }
 
-        .feature:hover {
-            transform: translateY(-15px) scale(1.02);
-            background: linear-gradient(145deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 138, 128, 0.1) 100%);
+        .stack-card:hover {
             border-color: rgba(255, 107, 107, 0.6);
+            box-shadow: 0 15px 50px rgba(255, 107, 107, 0.3);
         }
 
-        .feature h3 {
-            font-size: 1.8rem;
+        .stack-card__content {
+            display: flex;
+            gap: 60px;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+
+        .stack-card__image {
+            flex: 0 0 400px;
+            width: 400px;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .stack-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stack-card__info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 500px;
+        }
+
+        .stack-card__subtitle {
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #ff8a80;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .stack-card__title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 25px;
             background: linear-gradient(135deg, #ffffff 0%, #ff6b6b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .feature p {
-            font-size: 1.1rem;
+        .stack-card__description {
             font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            color: #aaa;
-            line-height: 1.7;
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .stack-card__number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(255, 138, 128, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
         }
 
         @media (max-width: 768px) {
@@ -609,107 +449,50 @@
             }
 
             .section3-header h1 {
-                font-size: 3.5rem;
+                font-size: 3rem;
             }
 
-            .features {
-                grid-template-columns: 1fr;
+            .section3-header h2 {
+                font-size: 2rem;
             }
 
-            :root {
-                --closed: 4rem;
-                --open: 22rem;
-            }
-
-            .head {
-                padding: 30px 15px 20px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .track {
-                flex-direction: column;
-                scroll-snap-type: y mandatory;
-                gap: 0.8rem;
-                padding-bottom: 20px;
-            }
-
-            .project-card {
+            .stack-card {
                 height: auto;
-                min-height: 80px;
+                min-height: 400px;
+                padding: 40px 30px;
+                top: 80px;
+                margin-bottom: 30px;
+            }
+
+            .stack-card__content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .stack-card__image {
                 flex: 0 0 auto;
                 width: 100%;
-                scroll-snap-align: start;
+                height: 250px;
             }
 
-            .project-card[active] {
-                min-height: 300px;
-                transform: none;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            .stack-card__info {
+                flex: 1;
             }
 
-            .project-card__content {
-                flex-direction: row;
-                justify-content: flex-start;
-                padding: 1rem;
-                align-items: center;
-                gap: 1rem;
+            .stack-card__title {
+                font-size: 32px;
             }
 
-            .project-card__title {
-                writing-mode: horizontal-tb;
-                transform: none;
-                font-size: 1.2rem;
+            .stack-card__number {
+                font-size: 80px;
+                top: 20px;
+                right: 25px;
             }
 
-            .project-card[active] .project-card__content {
-                align-items: flex-start;
-                padding: 1.5rem;
+            .stack-card__description {
+                font-size: 14px;
             }
-
-            .project-card[active] .project-card__title {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-
-            .project-card[active] .project-card__thumb {
-                width: 200px;
-                height: 267px;
-                border-radius: 0.35rem;
-                margin-bottom: 1rem;
-            }
-
-            .project-card[active] .project-card__desc {
-                font-size: 0.95rem;
-                max-width: 100%;
-                margin-bottom: 1rem;
-            }
-
-            .project-card[active] .project-card__btn {
-                align-self: center;
-                width: 100%;
-                text-align: center;
-                padding: 0.7rem;
-            }
-
-            .dots {
-                display: none;
-            }
-
-            .controls {
-                width: 100%;
-                justify-content: space-between;
-                padding: 0;
-            }
-            .present-img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: 70% center; /* shift right */
-            }
-
-        }  
+        }
     </style>
 </head>
 <body>
@@ -831,165 +614,136 @@
     </section>
 
     <!-- About Me / Welcome Section -->
-    <section style="--bg: black;" class="section3" id="aboutme">
+    <!-- About Me Section with New Timeline -->
+    <section class="section3" id="aboutme">
         <div class="section3-header">
             <h1>About Me</h1>
             <p>Explore My Journey & Expertise</p>
         </div>
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/PNtVywz04JA?si=t--5sbfvuh8LTEsf&amp;controls=0&amp;start=1699" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div class="head"></div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/PNtVywz04JA?si=t--5sbfvuh8LTEsf&amp;controls=0&amp;start=1699" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="margin: 2rem 0; border-radius: 15px;"></iframe>
+
         <div class="section3-header">
             <h2>Explore My Timeline</h2>
         </div>
-        <div class="controls">
-                <button id="prev" class="nav-btn" aria-label="Prev">‹</button>
-                <button id="next" class="nav-btn" aria-label="Next">›</button>
-        </div>
-        </div>
 
-        <div class="slider">
-            <div class="track" id="track">
-                <article class="project-card" active>
-                    <img class="project-card__bg" src="assets/hackathon img.PNG" alt="">
-                    <div class="project-card__content">
-                        <img class="project-card__thumb" src="assets/hackathon img.PNG" alt="">
-                        <div>
-                            <h3 class="project-card__title">Origins</h3>
-                            <p class="project-card__desc">My curiosity began with video games—how they worked, broke, and came to life. Raised by immigrant parents with limited guidance, I found my footing through hands-on creation, hackathons, and internships at the Urban Assembly Gateway School of Technology</p>
-                            
+        <div class="carousel-container">
+            <div class="stack-cards">
+                <article class="stack-card">
+                    <span class="stack-card__number">01</span>
+                    <div class="stack-card__content">
+                        <div class="stack-card__image">
+                            <img src="assets/hackathon img.PNG" alt="Origins">
+                        </div>
+                        <div class="stack-card__info">
+                            <p class="stack-card__subtitle">Where It All Began</p>
+                            <h3 class="stack-card__title">Origins</h3>
+                            <p class="stack-card__description">My curiosity began with video games—how they worked, broke, and came to life. Raised by immigrant parents with limited guidance, I found my footing through hands-on creation, hackathons, and internships at the Urban Assembly Gateway School of Technology.</p>
                         </div>
                     </div>
                 </article>
 
-                <article class="project-card">
-                    <img class="project-card__bg" src="assets/collegepic.JPG" alt="">
-                    <div class="project-card__content">
-                        <img class="project-card__thumb" src="assets/collegepic.JPG" alt="">
-                        <div>
-                            <h3 class="project-card__title">Foundation</h3>
-                            <p class="project-card__desc">I studied computer science, learning the fundamentals of systems, algorithms, and how computers truly operate beneath the surface. The rigor pushed me into increasingly challenging internships that tested my resilience and sharpened my technical confidence.</p>
-                           
+                <article class="stack-card">
+                    <span class="stack-card__number">02</span>
+                    <div class="stack-card__content">
+                        <div class="stack-card__image">
+                            <img src="assets/collegepic.JPG" alt="Foundation">
+                        </div>
+                        <div class="stack-card__info">
+                            <p class="stack-card__subtitle">Building the Base</p>
+                            <h3 class="stack-card__title">Foundation</h3>
+                            <p class="stack-card__description">I studied computer science at Lehman College, learning the fundamentals of systems, algorithms, and how computers truly operate beneath the surface. The rigor pushed me into increasingly challenging internships that tested my resilience and sharpened my technical confidence.</p>
                         </div>
                     </div>
                 </article>
 
-                <article class="project-card">
-                    <img class="project-card__bg" src="assets/present.jpg" alt="" class="present-img">
-                    <div class="project-card__content">
-                        <img class="project-card__thumb" src="assets/present.jpg">
-                        <div>
-                            <h3 class="project-card__title">Momentum</h3>
-                            <p class="project-card__desc">Today, I drive impact within my organization while continuously expanding my skills in reliability, automation, and large-scale systems. Beyond work, I build personal projects and share my journey to inspire others navigating their own paths in tech.</p>
-                            
+                <article class="stack-card">
+                    <span class="stack-card__number">03</span>
+                    <div class="stack-card__content">
+                        <div class="stack-card__image">
+                            <img src="assets/present.jpg" alt="Momentum">
+                        </div>
+                        <div class="stack-card__info">
+                            <p class="stack-card__subtitle">Making an Impact</p>
+                            <h3 class="stack-card__title">Momentum</h3>
+                            <p class="stack-card__description">Today, I drive impact within my organization while continuously expanding my skills in reliability, automation, and large-scale systems. Beyond work, I build personal projects and share my journey to inspire others navigating their own paths in tech.</p>
                         </div>
                     </div>
                 </article>
 
-                <article class="project-card">
-                    <img class="project-card__bg" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=520&fit=crop" alt="">
-                    <div class="project-card__content">
-                        <img class="project-card__thumb" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&h=400&fit=crop" alt="">
-                        <div>
-                            <h3 class="project-card__title">Forward</h3>
-                            <p class="project-card__desc">Looking ahead, I aim to deepen my influence by designing data-driven, reliable solutions that scale and endure. My goal is to blend engineering excellence with thoughtful problem-solving to create meaningful, lasting impact.</p>
-                             <button class="project-card__btn">Hire Me</button>
+                <article class="stack-card">
+                    <span class="stack-card__number">04</span>
+                    <div class="stack-card__content">
+                        <div class="stack-card__image">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop" alt="Forward">
+                        </div>
+                        <div class="stack-card__info">
+                            <p class="stack-card__subtitle">Looking Ahead</p>
+                            <h3 class="stack-card__title">Forward</h3>
+                            <p class="stack-card__description">Looking ahead, I aim to deepen my influence by designing data-driven, reliable solutions that scale and endure. My goal is to blend engineering excellence with thoughtful problem-solving to create meaningful, lasting impact.</p>
                         </div>
                     </div>
                 </article>
-
-                
             </div>
         </div>
+    </section>
 
-        <div class="dots" id="dots"></div>
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Stack card scroll animation
+            const cards = document.querySelectorAll('.stack-card');
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+                
+                if (rect.top < window.innerHeight * 0.5 && rect.top > 0) {
+                    const scale = 1 - (index * 0.05);
+                    const translateY = index * 20;
+                    card.style.transform = `scale(${scale}) translateY(-${translateY}px)`;
+                } else {
+                    card.style.transform = 'scale(1) translateY(0)';
+                }
+            });
+        });
+    </script>
 
      
-    <script>
-      (() => {
-        const track = document.getElementById("track");
-        const wrap = track.parentElement;
-        const cards = Array.from(track.children);
-        const prev = document.getElementById("prev");
-        const next = document.getElementById("next");
-        const dotsBox = document.getElementById("dots");
-        const isMobile = () => matchMedia("(max-width:767px)").matches;
-
-        // Create dots
-        cards.forEach((_, i) => {
-          const dot = document.createElement("span");
-          dot.className = "dot";
-          dot.onclick = () => activate(i, true);
-          dotsBox.appendChild(dot);
-        });
-
-        const dots = Array.from(dotsBox.children);
-        let current = 0;
-
-        function center(i) {
-          const card = cards[i];
-          const axis = isMobile() ? "top" : "left";
-          const size = isMobile() ? "clientHeight" : "clientWidth";
-          const start = isMobile() ? card.offsetTop : card.offsetLeft;
-          wrap.scrollTo({
-            [axis]: start - (wrap[size] / 2 - card[size] / 2),
-            behavior: "smooth"
-          });
-        }
-
-        function toggleUI(i) {
-          cards.forEach((c, k) => c.toggleAttribute("active", k === i));
-          dots.forEach((d, k) => d.classList.toggle("active", k === i));
-          prev.disabled = i === 0;
-          next.disabled = i === cards.length - 1;
-        }
-
-        function activate(i, scroll) {
-          if (i === current) return;
-          current = i;
-          toggleUI(i);
-          if (scroll) center(i);
-        }
-
-        function go(step) {
-          activate(Math.min(Math.max(current + step, 0), cards.length - 1), true);
-        }
-
-        prev.onclick = () => go(-1);
-        next.onclick = () => go(1);
-
-        // Keyboard navigation
-        addEventListener("keydown", (e) => {
-          if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
-          if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
-        }, { passive: true });
-
-        // Card interactions
-        cards.forEach((card, i) => {
-          card.addEventListener("mouseenter", () => 
-            matchMedia("(hover:hover)").matches && activate(i, true)
-          );
-          card.addEventListener("click", () => activate(i, true));
-        });
-
-        // Touch support
-        let sx = 0, sy = 0;
-        track.addEventListener("touchstart", (e) => {
-          sx = e.touches[0].clientX;
-          sy = e.touches[0].clientY;
-        }, { passive: true });
-
-        track.addEventListener("touchend", (e) => {
-          const dx = e.changedTouches[0].clientX - sx;
-          const dy = e.changedTouches[0].clientY - sy;
-          if (isMobile() ? Math.abs(dy) > 60 : Math.abs(dx) > 60)
-            go((isMobile() ? dy : dx) > 0 ? -1 : 1);
-        }, { passive: true });
-
-        // Initialize
-        if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
-        addEventListener("resize", () => center(current));
-        toggleUI(0);
-        center(0);
-      })();
-    </script>   
+    
     </section>

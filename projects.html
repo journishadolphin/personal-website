@@ -121,12 +121,14 @@
         .scroll-arrow {
             position: absolute;
             bottom: 40px;
+            top: 100px;
+        
             left: 50%;
             transform: translateX(-50%);
             font-size: 2rem;
             animation: bounce 2s ease-in-out infinite;
-            cursor: pointer;
-            z-index: 20;
+            cursor: pointer;   
+           
         }
 
         @keyframes bounce {
@@ -472,17 +474,23 @@
     </nav>
 
     <!-- Hero Section -->
+    
     <div class="hero">
         <div class="hero-content">
             <h1>Projects & Infrastructure</h1>
             <p>SRE • Automation • Web Development</p>
-            <div class="scroll-arrow">↓</div>
+            
         </div>
+      
     </div>
+    
 
     <!-- Pi-hole Metrics Section -->
     <section id="piholeSection">
-        <h2 class="section-title">📊 Live Pi-hole Network Metrics</h2>
+        <h2 class="section-title">Live Pi-hole Network Metrics</h2>
+        <div class="info">
+            <p>Network-wide DNS filtering protecting all devices on the network</p>
+        </div>
         <div class="metrics-grid" id="metricsContainer">
             <div class="metric-card">
                 <div class="metric-icon">🟡</div>
@@ -490,9 +498,7 @@
                 <div class="metric-value">--</div>
             </div>
         </div>
-        <div class="info">
-            <p>Network-wide DNS filtering protecting all devices on the network</p>
-        </div>
+    
     </section>
 
     <!-- Projects Section -->
@@ -550,9 +556,7 @@ pihole restartdns</div>
                     <div class="code-sample">sudo systemctl status pihole-FTL
 sudo systemctl restart nginx
 cloudflared tunnel run website-tunnel</div>
-                </div>
-                <a href="https://journishadolphin.com" class="project-link">Visit Website →</a>
-            </div>
+                
         </div>
     </section>
 
