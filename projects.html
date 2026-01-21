@@ -566,6 +566,35 @@ cloudflared tunnel run website-tunnel</div>
         </div>
     </section>
 
-   
+    <script>
+        // Pi-hole Metrics
+async function fetchPiholeMetrics() {
+    try {
+        const response = await fetch('/api/pihole-metrics.php');
+        const data = await response.json();
+
+        const metrics = [
+            { icon: '🟢', label: 'Queries Today', value: (data.dns_queries_today || 0).toLocaleString() },
+            { icon: '🛑', label: 'Blocked Today', value: (data.ads_blocked_today || 0).toLocaleString() },
+            { icon: '📊', label: 'Block Rate', value: (data.ads_percentage_today || 0).toFixed(1) + '%' },
+            { icon: '✓', label: 'Status', value: data.status === 'enabled' ? 'Active' : 'Off' }
+        ];
+
+        const container = document.getElementById('metricsContainer');
+        container.innerHTML = metrics.map(m => `
+            <div class="metric-card">
+                <div class="metric-icon">${m.icon}</div>
+                <div class="metric-label">${m.label}</div>
+                <div class="metric-value">${m.value}</div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error fetching metrics:', error);
+    }
+}
+
+window.addEventListener('load', fetchPiholeMetrics);
+setInterval(fetchPiholeMetrics, 30000);
+    </script>
 </body>
 </html>
