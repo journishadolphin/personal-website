@@ -45,16 +45,26 @@
             border-radius: 50px;
             padding: 0.8rem 1.5rem;
             box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
         }
 
         nav a {
+            position: relative;
             padding: 0.7rem 1.5rem;
+            font-family: 'Poppins', sans-serif;
             font-size: 1rem;
             font-weight: 500;
             color: #aaa;
             text-decoration: none;
             border-radius: 50px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
             white-space: nowrap;
         }
 
@@ -467,7 +477,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="#aboutme" class="nav-link">About Me</a>
+            <a href="index.html#aboutme" class="nav-link">About Me</a>
             <a href="#projects" class="nav-link active">Projects</a>
             <a href="hire.html" class="nav-link">Hire Me</a>
         </div>
@@ -485,21 +495,6 @@
     </div>
     
 
-    <!-- Pi-hole Metrics Section -->
-    <section id="piholeSection">
-        <h2 class="section-title">Live Pi-hole Network Metrics</h2>
-        <div class="info">
-            <p>Network-wide DNS filtering protecting all devices on the network</p>
-        </div>
-        <div class="metrics-grid" id="metricsContainer">
-            <div class="metric-card">
-                <div class="metric-icon">🟡</div>
-                <div class="metric-label">Loading...</div>
-                <div class="metric-value">--</div>
-            </div>
-        </div>
-    
-    </section>
 
     <!-- Projects Section -->
     <section id="projectsSection">
@@ -566,40 +561,11 @@ cloudflared tunnel run website-tunnel</div>
             <h2>Explore My Portfolio</h2>
             <p>Check out my complete portfolio including college projects, app development, web design, and more engineering work on GitHub.</p>
             <div class="cta-links">
-                <a href="https://github.com/journishadolphin" class="cta-link">View All →</a>
+                <a href="https://github.com/journishadolphin?tab=repositories" class="cta-link">View All →</a>
             </div>
         </div>
     </section>
 
-    <script>
-        // Pi-hole Metrics
-async function fetchPiholeMetrics() {
-    try {
-        const response = await fetch('/api/pihole-metrics.php');
-        const data = await response.json();
-
-        const metrics = [
-            { icon: '🟢', label: 'Queries Today', value: (data.dns_queries_today || 0).toLocaleString() },
-            { icon: '🛑', label: 'Blocked Today', value: (data.ads_blocked_today || 0).toLocaleString() },
-            { icon: '📊', label: 'Block Rate', value: (data.ads_percentage_today || 0).toFixed(1) + '%' },
-            { icon: '✓', label: 'Status', value: data.status === 'enabled' ? 'Active' : 'Off' }
-        ];
-
-        const container = document.getElementById('metricsContainer');
-        container.innerHTML = metrics.map(m => `
-            <div class="metric-card">
-                <div class="metric-icon">${m.icon}</div>
-                <div class="metric-label">${m.label}</div>
-                <div class="metric-value">${m.value}</div>
-            </div>
-        `).join('');
-    } catch (error) {
-        console.error('Error fetching metrics:', error);
-    }
-}
-
-window.addEventListener('load', fetchPiholeMetrics);
-setInterval(fetchPiholeMetrics, 30000);
-    </script>
+   
 </body>
 </html>
